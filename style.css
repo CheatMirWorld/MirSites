@@ -10,6 +10,23 @@ body {
 .container { max-width: 1100px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; padding: 20px; }
 
 header { background: #121019; border-bottom: 2px solid #7d2ae8; }
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 15px; /* Отступ между фото и текстом */
+    text-decoration: none;
+    color: white;
+    font-size: 24px;
+    font-weight: 900;
+    text-transform: uppercase;
+}
+
+.logo img {
+    height: 50px; /* Высота твоего фото */
+    width: auto;  /* Ширина подберется автоматически */
+    border-radius: 8px; /* Скругление углов, если нужно */
+    object-fit: contain;
+}
 .logo { font-size: 24px; font-weight: bold; text-decoration: none; color: white; }
 .logo span { color: #7d2ae8; }
 .menu a { color: white; text-decoration: none; margin-left: 20px; font-weight: 500; }
