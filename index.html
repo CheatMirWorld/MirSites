@@ -149,6 +149,11 @@
                 alert('IP mc.MirWorld.fun скопирован!');
             });
         }
+        function copyIP() {
+            navigator.clipboard.writeText('mc.MirWorld.fun').then(() => {
+                alert('IP mc.MirWorld.fun скопирован!');
+            });
+        }
         function reveal() {
             var reveals = document.querySelectorAll(".reveal");
             for (var i = 0; i < reveals.length; i++) {
