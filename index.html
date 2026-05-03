@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MirWorld — Главная</title>
+    <link href="https://googleapis.com" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+        body { 
+            font-family: 'Montserrat', sans-serif; 
+            background: #09080e; 
+            color: #fff; 
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+        
+        header { 
+            background: #121019; 
+            padding: 20px; 
+            border-bottom: 2px solid #7d2ae8; 
+            position: sticky; 
+            top: 0; 
+            z-index: 100; 
+            animation: slideDown 0.8s ease;
+        }
+
+        .container { max-width: 1000px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; padding: 0 20px; }
+        .logo { font-size: 24px; font-weight: 900; text-transform: uppercase; text-decoration: none; color: white; }
+        .logo span { color: #7d2ae8; }
+        nav a { color: white; text-decoration: none; margin-left: 20px; font-weight: 600; transition: 0.3s; font-size: 14px; text-transform: uppercase; }
+        nav a:hover { color: #7d2ae8; }
+
+        .reveal { opacity: 0; transform: translateY(30px); transition: all 0.8s ease-out; }
+        .reveal.active { opacity: 1; transform: translateY(0); }
+
+        .about-section { max-width: 900px; margin: 60px auto; padding: 0 20px; }
+        .hero-head { text-align: center; margin-bottom: 50px; animation: fadeIn 1.5s ease; }
+        .hero-head h1 { font-size: 3rem; text-transform: uppercase; margin-bottom: 15px; line-height: 1.1; }
+        .hero-head h1 span { color: #7d2ae8; }
+        
+        .content-block { background: #121019; padding: 35px; border-radius: 20px; border: 1px solid #222; margin-bottom: 30px; transition: 0.4s; }
+        .content-block:hover { border-color: #7d2ae8; }
+        .content-block h2 { color: #7d2ae8; margin-bottom: 20px; text-transform: uppercase; font-size: 1.5rem; }
+
+        .mode-card { margin-bottom: 20px; padding: 15px; border-radius: 10px; }
+        .easy-card { border-left: 5px solid #2ecc71; background: rgba(46, 204, 113, 0.05); }
+        .hard-card { border-left: 5px solid #e74c3c; background: rgba(231, 76, 60, 0.05); }
+        
+        .staff-item { margin-bottom: 15px; padding-left: 30px; position: relative; list-style: none; }
+        .staff-item::before { content: '👑'; position: absolute; left: 0; }
+        .staff-item b { color: #7d2ae8; }
+
+        .features-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+        .feature-box b { color: #7d2ae8; display: block; margin-bottom: 5px; }
+
+        .btns-group { text-align: center; margin: 40px 0 60px 0; }
+        .btn { text-decoration: none; padding: 18px 50px; border-radius: 50px; font-weight: 900; text-transform: uppercase; transition: 0.3s; display: inline-block; cursor: pointer; }
+        .ip-btn { background: #7d2ae8; color: white; border: none; }
+        .ip-btn:hover { transform: scale(1.05); background: #6317cc; }
+
+        footer { padding: 40px; text-align: center; color: #666; border-top: 1px solid #111; }
+        .social-links { margin-bottom: 25px; display: flex; justify-content: center; gap: 10px; flex-wrap: wrap; }
+        .social-btn { display: inline-block; padding: 10px 20px; border-radius: 10px; text-decoration: none; font-weight: bold; color: #fff; background: #1a1a1a; border: 1px solid #333; transition: 0.3s; }
+        
+        .social-btn:hover { transform: translateY(-5px); }
+        .tg-btn:hover { border-color: #24A1DE; color: #24A1DE !important; }
+        .ds-btn:hover { border-color: #5865F2; color: #5865F2 !important; }
+        .yt-btn:hover { border-color: #FF0000; color: #FF0000 !important; }
+        .tt-btn:hover { border-color: #00f2ea; color: #00f2ea !important; }
+
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+        @keyframes slideDown { from { transform: translateY(-100%); } to { transform: translateY(0); } }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="container">
+            <a href="index.html" class="logo">Mir<span>World</span></a>
+            <nav>
+                <a href="index.html">Главная</a>
+                <a href="https://mirworld.fun">Магазин</a>
+                <a href="rules.html">Правила</a>
+            </nav>
+        </div>
+    </header>
+
+    <main class="about-section">
+        <div class="hero-head">
+            <h1>MirWorld — Настоящая <span>Анархия</span> для своих! ⚔️🛡️</h1>
+        </div>
+
+        <div class="content-block reveal">
+            <p>Ищешь стабильный сервер, где нет глупых правил и ограничений? MirWorld — это проект от игроков для игроков. Мы не обещаем «золотых гор», мы даем качественный геймплей, честную анархию и крутую атмосферу.</p>
+        </div>
+
+        <div class="content-block reveal">
+            <h2>Выбирай свой уровень сложности:</h2>
+            <div class="mode-card easy-card">
+                <h3>🟢 ᴇᴀsʏ-анархия</h3>
+                <p>Более мягкий вход в игру, сбалансированная экономика и комфортное развитие. Идеально для тех, кто хочет наслаждаться процессом.</p>
+            </div>
+            <div class="mode-card hard-card">
+                <h3>🔴 ʜᴀʀᴅ-анархия</h3>
+                <p>Выживание на пределе. Минимум ресурсов, максимум опасности. Здесь каждый рейд — это вызов, а каждый союз — риск.</p>
+            </div>
+        </div>
+
+        <div class="content-block reveal">
+            <h2>Основатели проекта:</h2>
+            <p style="margin-bottom: 15px; color: #aaa;">Мы всегда на связи с игроками и работаем над сервером ежедневно:</p>
+            <div class="staff-item"><b>Андрей (reseryt5786)</b> — создатель и технический мозг проекта.</div>
+            <div class="staff-item"><b>Максим (catnap_night)</b> — владелец, отвечает за развитие и комьюнити, и за главное железо.</div>
+        </div>
+
+        <div class="content-block reveal">
+            <h2>Почему стоит играть на MirWorld?</h2>
+            <div class="features-grid">
+                <div class="feature-box"><b>Поддержка версий:</b> От 1.16.5 до 1.20.1.</div>
+                <div class="feature-box"><b>Оптимизация:</b> Стабильное железо и плавный TPS.</div>
+                <div class="feature-box"><b>Полная свобода:</b> Гриферство, кражи, войны кланов — делай всё, что хочешь.</div>
+                <div class="feature-box"><b>Комьюнити:</b> Дружное общение и отзывчивая администрация.</div>
+            </div>
+        </div>
+
+        <div class="content-block reveal" style="text-align: center; border-color: #7d2ae8;">
+            <h2>📍 Наши данные для входа:</h2>
+            <p style="font-size: 1.4rem; margin: 10px 0;">Айпи: <b>mc.MirWorld.fun</b> 🎮</p>
+            <p>Версии: <b>1.16.5 — 1.20.1</b></p>
+            <p style="margin-top: 15px; font-weight: bold; color: #7d2ae8;">MirWorld — здесь правила пишешь ты! Ждем тебя на сервере!</p>
+        </div>
+
+        <div class="btns-group reveal">
+            <button class="btn ip-btn" onclick="copyIP()">Копировать IP</button>
+        </div>
+    </main>
+
+    <footer class="reveal">
+        <div class="social-links">
+            <a href="https://t.me/mirworld_fun" class="social-btn tg-btn" target="_blank" rel="noopener">Telegram</a>
+            <a href="https://discord.gg/ntNqStCSwH" class="social-btn ds-btn" target="_blank" rel="noopener">Discord</a>
+            <a href="https://www.youtube.com/@MirWorld_W" class="social-btn yt-btn" target="_blank" rel="noopener">YouTube</a>
+            <a href="https://www.tiktok.com/@mirworld_fun" class="social-btn tt-btn" target="_blank" rel="noopener">TikTok</a>
+        </div>
+        <div> MirWorld. Все права защищены.</div>
+        <div>&copy; 2026 MirWorld. Сервер mc.MirWorld.fun никак не относится к Mojang, AB.</div>
+    </footer>
+
+    <script>
+        function copyIP() {
+            navigator.clipboard.writeText('mc.MirWorld.fun').then(() => {
+                alert('IP mc.MirWorld.fun скопирован!');
+            });
+        }
+        function reveal() {
+            var reveals = document.querySelectorAll(".reveal");
+            for (var i = 0; i < reveals.length; i++) {
+                var windowHeight = window.innerHeight;
+                var elementTop = reveals[i].getBoundingClientRect().top;
+                if (elementTop < windowHeight - 150) { reveals[i].classList.add("active"); }
+            }
+        }
+        window.addEventListener("scroll", reveal);
+        reveal();
+    </script>
+</body>
+</html>
