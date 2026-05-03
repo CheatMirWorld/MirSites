@@ -23,20 +23,19 @@
             position: sticky; 
             top: 0; 
             z-index: 100; 
-            animation: slideDown 0.8s ease;
         }
-
         .container { max-width: 1000px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; padding: 0 20px; }
         .logo { font-size: 24px; font-weight: 900; text-transform: uppercase; text-decoration: none; color: white; }
         .logo span { color: #7d2ae8; }
         nav a { color: white; text-decoration: none; margin-left: 20px; font-weight: 600; transition: 0.3s; font-size: 14px; text-transform: uppercase; }
         nav a:hover { color: #7d2ae8; }
 
+        /* Анимация при скролле */
         .reveal { opacity: 0; transform: translateY(30px); transition: all 0.8s ease-out; }
         .reveal.active { opacity: 1; transform: translateY(0); }
 
         .about-section { max-width: 900px; margin: 60px auto; padding: 0 20px; }
-        .hero-head { text-align: center; margin-bottom: 50px; animation: fadeIn 1.5s ease; }
+        .hero-head { text-align: center; margin-bottom: 50px; }
         .hero-head h1 { font-size: 3rem; text-transform: uppercase; margin-bottom: 15px; line-height: 1.1; }
         .hero-head h1 span { color: #7d2ae8; }
         
@@ -55,23 +54,24 @@
         .features-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
         .feature-box b { color: #7d2ae8; display: block; margin-bottom: 5px; }
 
-        .btns-group { text-align: center; margin: 40px 0 60px 0; }
-        .btn { text-decoration: none; padding: 18px 50px; border-radius: 50px; font-weight: 900; text-transform: uppercase; transition: 0.3s; display: inline-block; cursor: pointer; }
+        .btns-group { text-align: center; margin: 40px 0 60px 0; display: flex; justify-content: center; gap: 20px; flex-wrap: wrap; }
+        .btn { text-decoration: none; padding: 18px 40px; border-radius: 50px; font-weight: 900; text-transform: uppercase; transition: 0.3s; display: inline-block; cursor: pointer; }
+        
         .ip-btn { background: #7d2ae8; color: white; border: none; }
         .ip-btn:hover { transform: scale(1.05); background: #6317cc; }
+        
+        .shop-btn { background: #fff; color: #000; }
+        .shop-btn:hover { transform: scale(1.05); background: #ddd; }
 
         footer { padding: 40px; text-align: center; color: #666; border-top: 1px solid #111; }
         .social-links { margin-bottom: 25px; display: flex; justify-content: center; gap: 10px; flex-wrap: wrap; }
-        .social-btn { display: inline-block; padding: 10px 20px; border-radius: 10px; text-decoration: none; font-weight: bold; color: #fff; background: #1a1a1a; border: 1px solid #333; transition: 0.3s; }
+        .social-btn { display: inline-block; padding: 10px 20px; border-radius: 10px; text-decoration: none; font-weight: bold; color: #fff; background: #1a1a1a; border: 1px solid #333; transition: 0.3s; font-size: 13px; }
         
         .social-btn:hover { transform: translateY(-5px); }
         .tg-btn:hover { border-color: #24A1DE; color: #24A1DE !important; }
         .ds-btn:hover { border-color: #5865F2; color: #5865F2 !important; }
         .yt-btn:hover { border-color: #FF0000; color: #FF0000 !important; }
         .tt-btn:hover { border-color: #00f2ea; color: #00f2ea !important; }
-
-        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
-        @keyframes slideDown { from { transform: translateY(-100%); } to { transform: translateY(0); } }
     </style>
 </head>
 <body>
@@ -80,13 +80,12 @@
         <div class="container">
             <a href="index.html" class="logo">Mir<span>World</span></a>
             <nav>
-    <a href="index.html">Главная</a>
-    <!-- Це посилання відразу перекине в магазин -->
-    <a href="https://mirworld.mydonate.io" target="_blank">Магазин</a>
-    <a href="rules.html">Правила</a>
-</nav>
-    </div>
-</header>
+                <a href="index.html">Главная</a>
+                <a href="https://mydonate.io" target="_blank">Магазин</a>
+                <a href="rules.html">Правила</a>
+            </nav>
+        </div>
+    </header>
 
     <main class="about-section">
         <div class="hero-head">
@@ -135,6 +134,7 @@
 
         <div class="btns-group reveal">
             <button class="btn ip-btn" onclick="copyIP()">Копировать IP</button>
+            <a href="https://mydonate.io" target="_blank" class="btn shop-btn">В магазин</a>
         </div>
     </main>
 
@@ -143,10 +143,9 @@
             <a href="https://t.me/mirworld_fun" class="social-btn tg-btn" target="_blank" rel="noopener">Telegram</a>
             <a href="https://discord.gg/ntNqStCSwH" class="social-btn ds-btn" target="_blank" rel="noopener">Discord</a>
             <a href="https://www.youtube.com/@MirWorld_W" class="social-btn yt-btn" target="_blank" rel="noopener">YouTube</a>
-            <a href="https://www.tiktok.com/@mirworld_fun" class="social-btn tt-btn" target="_blank" rel="noopener">TikTok</a>
+            <a href="https://tiktok.com/@mirworld_fun" class="social-btn tt-btn" target="_blank" rel="noopener">TikTok</a>
         </div>
-        <div> MirWorld. Все права защищены.</div>
-        <div>&copy; 2026 MirWorld. Сервер mc.MirWorld.fun никак не относится к Mojang, AB.</div>
+        <div>&copy; 2026 MirWorld. Все права защищены.</div>
     </footer>
 
     <script>
