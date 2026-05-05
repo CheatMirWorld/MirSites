@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MirWorld | Магазин</title>
+    <link href="https://googleapis.com" rel="stylesheet">
+    <link href="https://unpkg.com" rel="stylesheet">
+    <style>
+        :root {
+            --easy: #00d2ff;
+            --hard: #ff4b2b;
+            --bg: #0b0b0d;
+            --card: #16161a;
+            --text: #e0e0e0;
+            --nav-bg: rgba(11, 11, 13, 0.95);
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: var(--bg);
+            color: var(--text);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        body::before {
+            content: "";
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: radial-gradient(circle at 50% 50%, #1a1a2e 0%, #0b0b0d 100%);
+            z-index: -1;
+        }
+
+        /* Навигация */
+        nav {
+            position: fixed;
+            top: 0; width: 100%;
+            background: var(--nav-bg);
+            backdrop-filter: blur(15px);
+            z-index: 1000;
+            padding: 20px 0;
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+        }
+
+        .nav-container {
+            max-width: 1100px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 25px;
+        }
+
+        .logo {
+            font-family: 'Orbitron', sans-serif;
+            font-weight: 700;
+            color: var(--easy);
+            text-decoration: none;
+            font-size: 1.6rem;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text);
+            margin-left: 25px;
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            transition: 0.3s;
+        }
+
+        .nav-links a:hover { color: var(--easy); }
+
+        /* Заголовок магазина */
+        .shop-header {
+            padding: 150px 20px 50px;
+            text-align: center;
+        }
+
+        .shop-header h1 {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 3.5rem;
+            margin-bottom: 10px;
+            background: linear-gradient(to right, #fff, var(--easy));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        /* Сетка товаров */
+        .container { max-width: 1200px; margin: 0 auto; padding: 40px 20px; }
+
+        .shop-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 25px;
+        }
+
+        .shop-card {
+            background: var(--card);
+            border-radius: 20px;
+            padding: 30px;
+            text-align: center;
+            border: 1px solid rgba(255,255,255,0.05);
+            transition: 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .shop-card:hover {
+            transform: translateY(-10px);
+            border-color: var(--easy);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.5);
+        }
+
+        .rank-icon {
+            width: 70px;
+            height: 70px;
+            line-height: 70px;
+            border-radius: 50%;
+            margin: 0 auto 20px;
+            font-family: 'Orbitron';
+            font-weight: bold;
+            font-size: 0.8rem;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+        }
+
+        .shop-card h3 {
+            font-family: 'Orbitron', sans-serif;
+            margin-bottom: 15px;
+            font-size: 1.2rem;
+        }
+
+        .price {
+            font-size: 1.8rem;
+            font-family: 'Orbitron';
+            color: #fff;
+            margin: 20px 0;
+        }
+
+        .buy-btn {
+            display: block;
+            text-decoration: none;
+            color: #fff;
+            border: 2px solid var(--easy);
+            padding: 10px;
+            border-radius: 10px;
+            font-weight: bold;
+            text-transform: uppercase;
+            font-size: 0.8rem;
+            transition: 0.3s;
+        }
+
+        .buy-btn:hover {
+            background: var(--easy);
+            color: #000;
+        }
+
+        /* Специальный стиль для самого дорогого товара */
+        .mir-rank {
+            border: 2px solid #ff4b2b !important;
+            background: linear-gradient(145deg, #16161a, #2a0a0a);
+        }
+
+        footer {
+            text-align: center;
+            padding: 60px;
+            opacity: 0.4;
+            font-size: 0.8rem;
+        }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <div class="nav-container">
+            <a href="index.html" class="logo">MIRWORLD</a>
+            <div class="nav-links">
+                <a href="https://mirworld.fun">Главная</a>
+                <a href="/shop" style="color: var(--easy);">Магазин</a>
+                <a href="/rules">Правила</a>
+                <a href="/help">Помощь</a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="shop-header" data-aos="fade-down">
+        <h1>МАГАЗИН</h1>
+        <p>Поддержите проект и получите уникальные возможности</p>
+    </div>
+
+    <div class="container">
+        <div class="shop-grid">
+            
+            <!-- Товар 1 -->
+            <div class="shop-card" data-aos="zoom-in" data-aos-delay="50">
+                <div class="rank-icon" style="background: #aaa;">VIP</div>
+                <h3>VIP</h3>
+                <div class="price">99 ₽</div>
+                <a href="#" class="buy-btn">Купить</a>
+            </div>
+
+            <!-- Товар 2 -->
+            <div class="shop-card" data-aos="zoom-in" data-aos-delay="100">
+                <div class="rank-icon" style="background: #55ff55; color: #000;">VIP+</div>
+                <h3>VIP+</h3>
+                <div class="price">199 ₽</div>
+                <a href="#" class="buy-btn">Купить</a>
+            </div>
+
+            <!-- Товар 3 -->
+            <div class="shop-card" data-aos="zoom-in" data-aos-delay="150">
+                <div class="rank-icon" style="background: #5555ff;">PREM</div>
+                <h3>PREMIUM</h3>
+                <div class="price">299 ₽</div>
+                <a href="#" class="buy-btn">Купить</a>
+            </div>
+
+            <!-- Товар 4 -->
+            <div class="shop-card" data-aos="zoom-in" data-aos-delay="200">
+                <div class="rank-icon" style="background: #ff55ff;">ELITE</div>
+                <h3>ELITE</h3>
+                <div class="price">499 ₽</div>
+                <a href="#" class="buy-btn">Купить</a>
+            </div>
+
+            <!-- Товар 5 -->
+            <div class="shop-card" data-aos="zoom-in" data-aos-delay="250">
+                <div class="rank-icon" style="background: #ffff55; color: #000;">LGND</div>
+                <h3>LEGEND</h3>
+                <div class="price">799 ₽</div>
+                <a href="#" class="buy-btn" style="border-color: #ffff55;">Купить</a>
+            </div>
+
+            <!-- Товар 6 -->
+            <div class="shop-card" data-aos="zoom-in" data-aos-delay="300">
+                <div class="rank-icon" style="background: #ff5555;">MYTH</div>
+                <h3>MYTHIC</h3>
+                <div class="price">999 ₽</div>
+                <a href="#" class="buy-btn">Купить</a>
+            </div>
+
+            <!-- Товар 7 -->
+            <div class="shop-card" data-aos="zoom-in" data-aos-delay="350">
+                <div class="rank-icon" style="background: #00aaaa;">ULTRA</div>
+                <h3>ULTRA</h3>
+                <div class="price">1299 ₽</div>
+                <a href="#" class="buy-btn">Купить</a>
+            </div>
+
+            <!-- Товар 8 -->
+            <div class="shop-card" data-aos="zoom-in" data-aos-delay="400">
+                <div class="rank-icon" style="background: #aa0000;">LORD</div>
+                <h3>OVERLORD</h3>
+                <div class="price">1999 ₽</div>
+                <a href="#" class="buy-btn">Купить</a>
+            </div>
+
+            <!-- Товар 9 -->
+            <div class="shop-card" data-aos="zoom-in" data-aos-delay="450">
+                <div class="rank-icon" style="background: #55ffff; color: #000;">TITAN</div>
+                <h3>TITAN</h3>
+                <div class="price">2999 ₽</div>
+                <a href="#" class="buy-btn">Купить</a>
+            </div>
+
+            <!-- Товар 10 -->
+            <div class="shop-card mir-rank" data-aos="zoom-in" data-aos-delay="500">
+                <div class="rank-icon" style="background: linear-gradient(45deg, #ff0000, #000); color: #fff;">MIR</div>
+                <h3>MIR (Властелин)</h3>
+                <div class="price">4999 ₽</div>
+                <a href="#" class="buy-btn" style="background: #ff4b2b; border: none;">Купить</a>
+            </div>
+
+        </div>
+    </div>
+
+    <footer>
+        &copy; 2026 MirWorld • Мы не связаны с Mojang, AB.
+    </footer>
+
+    <script src="https://unpkg.com"></script>
+    <script>
+        AOS.init({ duration: 800, once: true });
+    </script>
+</body>
+</html>
