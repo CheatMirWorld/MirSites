@@ -1,186 +1,112 @@
 <style>
-    @import url('https://googleapis.com');
-
-    /* Базові стилі */
-    .mir-body {
-        background-color: #0d0d0d;
-        color: #fff;
-        font-family: 'Montserrat', sans-serif;
-        margin: -20px;
-        padding-bottom: 60px;
-        min-height: 100vh;
-    }
-
+    /* Дизайн MirWorld */
+    .mir-site { background: #0a0a0a; color: #fff; font-family: 'Segoe UI', Arial, sans-serif; margin: -20px; padding-bottom: 60px; }
+    
     /* Меню */
-    .mir-nav {
-        background: #161616;
-        display: flex;
-        justify-content: center;
-        padding: 20px;
-        border-bottom: 3px solid #2ecc71;
-    }
-    .mir-nav a {
-        color: #fff;
-        text-decoration: none;
-        margin: 0 15px;
-        font-weight: 700;
-        text-transform: uppercase;
-        font-size: 13px;
-        transition: 0.3s;
-    }
+    .mir-nav { background: #161616; padding: 20px; display: flex; justify-content: center; border-bottom: 3px solid #2ecc71; }
+    .mir-nav a { color: #fff; text-decoration: none; margin: 0 15px; font-weight: bold; text-transform: uppercase; font-size: 13px; }
     .mir-nav a:hover { color: #2ecc71; }
 
     /* Шапка */
-    .mir-header {
-        text-align: center;
-        padding: 80px 20px;
-        background: linear-gradient(rgba(0,0,0,0.8), rgba(0,0,0,0.8)), url('https://imgur.com');
-        background-size: cover;
-        background-position: center;
-    }
-    .mir-header h1 {
-        font-size: 50px;
-        color: #2ecc71;
-        margin: 0;
-        letter-spacing: 8px;
-        font-weight: 900;
-        text-transform: uppercase;
-    }
+    .mir-header { text-align: center; padding: 80px 20px; background: #111; border-bottom: 1px solid #222; }
+    .mir-header h1 { font-size: 50px; color: #2ecc71; margin: 0; letter-spacing: 5px; text-transform: uppercase; }
+    .mir-header p { color: #888; letter-spacing: 2px; }
 
     /* Сітка товарів */
-    .mir-grid {
-        max-width: 1200px;
-        margin: 40px auto;
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: center;
-        gap: 20px;
-        padding: 0 20px;
-    }
-
+    .mir-grid { display: flex; flex-wrap: wrap; justify-content: center; gap: 20px; padding: 40px 20px; max-width: 1200px; margin: 0 auto; }
+    
     /* Картка товару */
-    .mir-card {
-        background: #1a1a1a;
-        border: 1px solid #333;
-        border-radius: 12px;
-        width: 240px;
-        padding: 25px;
-        text-align: center;
-        transition: 0.3s ease;
-    }
-    .mir-card:hover {
-        transform: translateY(-10px);
-        border-color: #2ecc71;
-        box-shadow: 0 10px 20px rgba(46, 204, 113, 0.2);
-    }
-    .mir-card h3 { font-size: 22px; margin: 10px 0; text-transform: uppercase; }
-    .mir-card .price {
-        display: block;
-        font-size: 20px;
-        color: #2ecc71;
-        margin-bottom: 20px;
-        font-weight: 700;
-    }
+    .mir-card { background: #1a1a1a; border: 1px solid #333; border-radius: 12px; width: 240px; padding: 25px; text-align: center; transition: 0.3s; }
+    .mir-card:hover { border-color: #2ecc71; transform: translateY(-5px); box-shadow: 0 10px 20px rgba(46, 204, 113, 0.1); }
+    .mir-card h3 { font-size: 22px; margin: 0 0 10px; }
+    .price { display: block; color: #2ecc71; font-size: 24px; font-weight: bold; margin-bottom: 20px; }
 
-    /* Кнопка купити (Embed версія) */
-    .mir-btn {
-        background: #2ecc71;
-        color: #000;
-        border: none;
-        display: block;
-        width: 100%;
-        padding: 14px;
-        border-radius: 6px;
-        font-weight: 900;
-        text-transform: uppercase;
-        cursor: pointer;
-        transition: 0.2s;
-    }
-    .mir-btn:hover { background: #27ae60; transform: scale(1.05); }
+    /* Кнопка КУПИТИ */
+    .btn-buy { background: #2ecc71; color: #000; text-decoration: none; display: block; padding: 12px; border-radius: 6px; font-weight: bold; text-transform: uppercase; transition: 0.2s; }
+    .btn-buy:hover { background: #27ae60; transform: scale(1.03); }
 </style>
 
-<div class="mir-body">
-    <!-- НАВІГАЦІЯ -->
+<div class="mir-site">
     <div class="mir-nav">
         <a href="/">Головна</a>
         <a href="/rules">Правила</a>
         <a href="/launcher">Лаунчер</a>
     </div>
 
-    <!-- ШАПКА -->
     <div class="mir-header">
         <h1>MIR WORLD</h1>
-        <p style="color: #888; letter-spacing: 2px; text-transform: uppercase;">Обери свій статус та введи дані</p>
+        <p>Обирай статус — домінуй на сервері</p>
     </div>
 
-    <!-- ВІТРИНА ТОВАРІВ -->
     <div class="mir-grid">
         <!-- ТОВАР 1 -->
         <div class="mir-card">
             <h3>VIP</h3>
             <span class="price">50 ₴</span>
-            <button class="mir-btn" data-mydonate-item="ID_17877">Придбати</button>
+            <a href="https://mydonate.io" class="btn-buy">Придбати</a>
         </div>
+
         <!-- ТОВАР 2 -->
         <div class="mir-card">
             <h3>PREMIUM</h3>
             <span class="price">100 ₴</span>
-            <button class="mir-btn" data-mydonate-item="ID_2">Придбати</button>
+            <a href="https://mydonate.io" class="btn-buy">Придбати</a>
         </div>
+
         <!-- ТОВАР 3 -->
         <div class="mir-card">
             <h3>ULTRA</h3>
             <span class="price">200 ₴</span>
-            <button class="mir-btn" data-mydonate-item="ID_3">Придбати</button>
+            <a href="https://mydonate.io" class="btn-buy">Придбати</a>
         </div>
+
         <!-- ТОВАР 4 -->
         <div class="mir-card">
             <h3>ELITE</h3>
             <span class="price">350 ₴</span>
-            <button class="mir-btn" data-mydonate-item="ID_4">Придбати</button>
+            <a href="https://mydonate.io" class="btn-buy">Придбати</a>
         </div>
+
         <!-- ТОВАР 5 -->
         <div class="mir-card">
             <h3>LEGEND</h3>
             <span class="price">500 ₴</span>
-            <button class="mir-btn" data-mydonate-item="ID_5">Придбати</button>
+            <a href="https://mydonate.io" class="btn-buy">Придбати</a>
         </div>
+
         <!-- ТОВАР 6 -->
         <div class="mir-card">
             <h3>1000 МОНЕТ</h3>
             <span class="price">25 ₴</span>
-            <button class="mir-btn" data-mydonate-item="ID_6">Придбати</button>
+            <a href="https://mydonate.io" class="btn-buy">Придбати</a>
         </div>
+
         <!-- ТОВАР 7 -->
         <div class="mir-card">
             <h3>5000 МОНЕТ</h3>
             <span class="price">100 ₴</span>
-            <button class="mir-btn" data-mydonate-item="ID_7">Придбати</button>
+            <a href="https://mydonate.io" class="btn-buy">Придбати</a>
         </div>
+
         <!-- ТОВАР 8 -->
         <div class="mir-card">
             <h3>РОЗБАН</h3>
             <span class="price">150 ₴</span>
-            <button class="mir-btn" data-mydonate-item="ID_8">Придбати</button>
+            <a href="https://mydonate.io" class="btn-buy">Придбати</a>
         </div>
+
         <!-- ТОВАР 9 -->
         <div class="mir-card">
             <h3>КЕЙС</h3>
             <span class="price">40 ₴</span>
-            <button class="mir-btn" data-mydonate-item="ID_9">Придбати</button>
+            <a href="https://mydonate.io" class="btn-buy">Придбати</a>
         </div>
+
         <!-- ТОВАР 10 -->
         <div class="mir-card">
             <h3>СПОНСОР</h3>
             <span class="price">1200 ₴</span>
-            <button class="mir-btn" data-mydonate-item="ID_10">Придбати</button>
+            <a href="https://mydonate.io" class="btn-buy">Придбати</a>
         </div>
     </div>
-
-    <div style="text-align: center; color: #444; font-size: 12px; margin-top: 30px;">
-        © 2024 MIR WORLD. NOT AN OFFICIAL MINECRAFT PRODUCT.
-    </div>
 </div>
-
-<!-- СКРИПТ ОПЛАТИ (ВІДКРИВАЄ ВІКНО НІК/ПОШТА) -->
-<script src="https://mydonate.io"></script>
