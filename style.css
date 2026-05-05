@@ -43,12 +43,19 @@ body { background: #0c0c0c !important; color: #fff !important; font-family: 'Ari
 .custom-nav a { color: #fff; text-decoration: none; font-weight: bold; text-transform: uppercase; font-size: 14px; }
 .custom-nav a:hover { color: #2ecc71; }
 
-/* Картки товарів */
+@import url('https://googleapis.com');
+
+body { background: #0d0d0d !important; color: #fff !important; font-family: 'Montserrat', sans-serif !important; }
+.navbar { background: #161616; display: flex; justify-content: center; padding: 20px; border-bottom: 3px solid #2ecc71; }
+.navbar a { color: #fff; text-decoration: none; margin: 0 20px; font-weight: 700; text-transform: uppercase; font-size: 13px; }
+.hero { text-align: center; padding: 80px 20px; background: #111; border-bottom: 1px solid #222; }
+.hero h1 { font-size: 50px; color: #2ecc71; margin: 0; letter-spacing: 5px; }
 .mir-grid { display: flex; flex-wrap: wrap; gap: 20px; justify-content: center; padding: 40px 10px; }
-.mir-card { background: #161616; border: 1px solid #333; border-radius: 12px; width: 250px; padding: 30px; text-align: center; transition: 0.3s; }
-.mir-card:hover { transform: translateY(-10px); border-color: #2ecc71; box-shadow: 0 10px 30px rgba(46, 204, 113, 0.2); }
-.mir-card h3 { color: #fff; font-size: 24px; margin-bottom: 10px; }
-.mir-card .price { color: #2ecc71; font-size: 22px; font-weight: bold; display: block; margin-bottom: 20px; }
+.mir-card { background: #1a1a1a; border: 1px solid #333; border-radius: 12px; width: 250px; padding: 25px; text-align: center; }
+.mir-card:hover { border-color: #2ecc71; transform: translateY(-5px); transition: 0.3s; }
+.price { color: #2ecc71; font-size: 22px; font-weight: bold; display: block; margin-bottom: 20px; }
+.btn-buy { background: #2ecc71; color: #000; text-decoration: none; display: block; padding: 12px; border-radius: 6px; font-weight: 900; text-transform: uppercase; }
+
 
 /* Кнопка */
 .mir-btn { 
