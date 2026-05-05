@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="uk">
+<html lang="ru">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MirWorld | Проєкт Анархії</title>
+    <title>MirWorld | Главная</title>
     <link href="https://googleapis.com" rel="stylesheet">
     <style>
         :root {
@@ -23,7 +23,6 @@
             overflow-x: hidden;
         }
 
-        /* Фоновий ефект */
         body::before {
             content: "";
             position: fixed;
@@ -110,11 +109,12 @@
             background: rgba(255,255,255,0.03);
             padding: 20px;
             border-radius: 15px;
-            width: 250px;
+            width: 280px;
+            border: 1px solid rgba(255,255,255,0.05);
         }
 
         .member h3 { margin: 0; color: #fff; }
-        .member span { font-size: 0.8rem; color: #888; text-transform: uppercase; }
+        .member span { font-size: 0.8rem; color: var(--easy); text-transform: uppercase; font-weight: bold; }
 
         footer {
             text-align: center;
@@ -133,6 +133,7 @@
             border-radius: 5px;
             display: none;
             font-weight: bold;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
         }
     </style>
 </head>
@@ -140,10 +141,10 @@
 
     <header>
         <h1>MirWorld</h1>
-        <p>Справжня анархія без кордонів</p>
+        <p>Настоящая анархия без границ и правил</p>
         <div class="ip-badge" onclick="copyIP()">
             IP: <b id="ip">mc.MirWorld.fun</b>
-            <div style="font-size: 0.7rem; opacity: 0.6; margin-top: 5px;">Версія: 1.16.5 - 1.20.1</div>
+            <div style="font-size: 0.7rem; opacity: 0.6; margin-top: 5px;">Версия: 1.16.5 — 1.20.1</div>
         </div>
     </header>
 
@@ -151,36 +152,36 @@
         <section class="modes">
             <div class="mode-card easy">
                 <h2>Easy-Anarchy</h2>
-                <p>Ідеальний старт для новачків. Класична анархія з м'якшим входом, де ви можете випробувати свої сили у виживанні та гриферстві.</p>
+                <p>Идеальный старт для тех, кто хочет классическую анархию с умеренной сложностью. Гриферство, выживание и развитие без лишнего давления.</p>
             </div>
             <div class="mode-card hard">
                 <h2>Hard-Anarchy</h2>
-                <p>Виклик для справжніх майстрів. Суворі умови, мінімум поблажок та максимальний хардкор. Тільки найсильніші зможуть захистити свою базу.</p>
+                <p>Испытание для лучших. Суровые условия, хардкорное выживание и беспощадные противники. Только здесь ты узнаешь, на что способен.</p>
             </div>
         </section>
 
         <section class="team">
-            <h2>Команда проєкту</h2>
+            <h2>Команда проекта</h2>
             <div class="team-grid">
                 <div class="member">
                     <h3>reseryt5786</h3>
-                    <span>Головний Тех. Власник</span>
-                    <p style="font-size: 0.9rem; margin-top: 10px;">Відповідає за стабільність, кодинг та технічну частину всесвіту.</p>
+                    <span>Главный Тех. Владелец</span>
+                    <p style="font-size: 0.9rem; margin-top: 10px;">Отвечает за стабильность, разработку, плагины и всю техническую магию сервера.</p>
                 </div>
                 <div class="member">
                     <h3>Catnap_night</h3>
-                    <span>Головний Власник</span>
-                    <p style="font-size: 0.9rem; margin-top: 10px;">Керує ігровим процесом, спільнотою та розвитком проєкту.</p>
+                    <span>Главный Владелец</span>
+                    <p style="font-size: 0.9rem; margin-top: 10px;">Курирует игровой процесс, сообщество и все вопросы, кроме технической части.</p>
                 </div>
             </div>
         </section>
     </div>
 
     <footer>
-        &copy; 2024 MirWorld Project. Не є офіційним продуктом Mojang.
+        &copy; 2024 MirWorld Project. Не является официальным продуктом Mojang.
     </footer>
 
-    <div id="toast" class="copy-success">IP Скопійовано!</div>
+    <div id="toast" class="copy-success">IP Скопирован!</div>
 
     <script>
         function copyIP() {
