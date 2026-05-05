@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <title>Мій Minecraft Магазин</title>
+    <style>
+        body { font-family: sans-serif; background: #1a1a1a; color: white; display: flex; justify-content: center; flex-wrap: wrap; padding: 20px; }
+        .product-card { background: #2a2a2a; border: 2px solid #3a3a3a; border-radius: 10px; width: 220px; margin: 10px; padding: 15px; text-align: center; transition: 0.3s; }
+        .product-card:hover { transform: translateY(-5px); border-color: #28a745; }
+        .product-card h3 { margin: 10px 0; color: #ffcc00; }
+        .price { font-size: 1.2em; font-weight: bold; margin-bottom: 15px; display: block; }
+        .buy-btn { background: #28a745; color: white; border: none; padding: 10px 20px; border-radius: 5px; cursor: pointer; width: 100%; font-weight: bold; }
+        .buy-btn:hover { background: #218838; }
+    </style>
+</head>
+<body>
+
+    <!-- ТОВАРИ (Впишіть свої ID замість цифр) -->
+    <div class="product-card">
+        <h3>VIP Статус</h3>
+        <span class="price">50 грн</span>
+        <button class="buy-btn" onclick="trademc.buy(111111)">КУПИТИ</button>
+    </div>
+
+    <div class="product-card">
+        <h3>Premium</h3>
+        <span class="price">100 грн</span>
+        <button class="buy-btn" onclick="trademc.buy(222222)">КУПИТИ</button>
+    </div>
+
+    <div class="product-card">
+        <h3>Ultra</h3>
+        <span class="price">200 грн</span>
+        <button class="buy-btn" onclick="trademc.buy(333333)">КУПИТИ</button>
+    </div>
+
+    <div class="product-card">
+        <h3>Креатив</h3>
+        <span class="price">150 грн</span>
+        <button class="buy-btn" onclick="trademc.buy(444444)">КУПИТИ</button>
+    </div>
+
+    <div class="product-card">
+        <h3>Адмінка</h3>
+        <span class="price">500 грн</span>
+        <button class="buy-btn" onclick="trademc.buy(555555)">КУПИТИ</button>
+    </div>
+
+    <div class="product-card">
+        <h3>1,000 Монет</h3>
+        <span class="price">20 грн</span>
+        <button class="buy-btn" onclick="trademc.buy(666666)">КУПИТИ</button>
+    </div>
+
+    <div class="product-card">
+        <h3>5,000 Монет</h3>
+        <span class="price">80 грн</span>
+        <button class="buy-btn" onclick="trademc.buy(777777)">КУПИТИ</button>
+    </div>
+
+    <div class="product-card">
+        <h3>Розбан</h3>
+        <span class="price">100 грн</span>
+        <button class="buy-btn" onclick="trademc.buy(888888)">КУПИТИ</button>
+    </div>
+
+    <div class="product-card">
+        <h3>Набір Ресурсів</h3>
+        <span class="price">30 грн</span>
+        <button class="buy-btn" onclick="trademc.buy(999999)">КУПИТИ</button>
+    </div>
+
+    <div class="product-card">
+        <h3>Спонсор</h3>
+        <span class="price">1000 грн</span>
+        <button class="buy-btn" onclick="trademc.buy(000000)">КУПИТИ</button>
+    </div>
+
+    <!-- СКРИПТ TRADEMC (Обов'язково!) -->
+    <script src="https://trademc.org"></script>
+
+</body>
+</html>
