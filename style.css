@@ -35,5 +35,26 @@ header { background: #121019; border-bottom: 2px solid #7d2ae8; }
 .rules-box { text-align: left; max-width: 800px; margin: 0 auto; background: #121019; padding: 40px; border-radius: 20px; }
 .rule { margin-bottom: 30px; }
 .rule h4 { color: #7d2ae8; font-size: 1.2rem; margin-bottom: 10px; }
+/* Майнкрафт-стиль для MirWorld */
+body { background: #0c0c0c !important; color: #fff !important; font-family: 'Arial', sans-serif; }
+
+/* Навігація */
+.custom-nav { background: #1a1a1a; padding: 15px; display: flex; justify-content: center; gap: 25px; border-bottom: 3px solid #2ecc71; }
+.custom-nav a { color: #fff; text-decoration: none; font-weight: bold; text-transform: uppercase; font-size: 14px; }
+.custom-nav a:hover { color: #2ecc71; }
+
+/* Картки товарів */
+.mir-grid { display: flex; flex-wrap: wrap; gap: 20px; justify-content: center; padding: 40px 10px; }
+.mir-card { background: #161616; border: 1px solid #333; border-radius: 12px; width: 250px; padding: 30px; text-align: center; transition: 0.3s; }
+.mir-card:hover { transform: translateY(-10px); border-color: #2ecc71; box-shadow: 0 10px 30px rgba(46, 204, 113, 0.2); }
+.mir-card h3 { color: #fff; font-size: 24px; margin-bottom: 10px; }
+.mir-card .price { color: #2ecc71; font-size: 22px; font-weight: bold; display: block; margin-bottom: 20px; }
+
+/* Кнопка */
+.mir-btn { 
+    background: #2ecc71; color: #000; text-decoration: none; display: block; 
+    padding: 12px; border-radius: 6px; font-weight: bold; text-transform: uppercase; 
+.mir-btn:hover { background: #27ae60; }
+
 
 footer { padding: 40px; text-align: center; color: #444; background: #07060a; }
