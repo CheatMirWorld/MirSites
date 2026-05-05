@@ -2,208 +2,118 @@
 <html lang="uk">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MirWorld - Магазин</title>
     <style>
-        /* ОСНОВНІ СТИЛІ */
-        body { 
-            background-color: #0d0d0d; 
-            color: #ffffff; 
-            margin: 0; 
-            font-family: 'Segoe UI', Roboto, sans-serif;
-        }
-
-        /* НАВІГАЦІЯ */
-        .nav {
-            background: #161616;
-            display: flex;
-            justify-content: center;
-            padding: 15px 0;
-            border-bottom: 3px solid #2ecc71;
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-        }
-        .nav a {
-            color: white;
-            text-decoration: none;
-            margin: 0 20px;
-            font-weight: bold;
-            text-transform: uppercase;
-            font-size: 14px;
-            transition: 0.3s;
-        }
+        body { background-color: #0a0a0a; color: #fff; margin: 0; font-family: 'Arial', sans-serif; }
+        
+        /* Меню */
+        .nav { background: #111; display: flex; justify-content: center; padding: 20px; border-bottom: 2px solid #2ecc71; }
+        .nav a { color: #fff; text-decoration: none; margin: 0 20px; font-weight: bold; text-transform: uppercase; transition: 0.3s; }
         .nav a:hover { color: #2ecc71; }
 
-        /* ШАПКА */
-        .header {
-            text-align: center;
-            padding: 80px 20px;
-            background: linear-gradient(rgba(0,0,0,0.8), rgba(0,0,0,0.8)), url('https://unsplash.com');
-            background-size: cover;
-            background-position: center;
-        }
-        .header h1 {
-            font-size: 64px;
-            margin: 0;
-            color: #2ecc71;
-            letter-spacing: 10px;
-            text-shadow: 0 0 20px rgba(46, 204, 113, 0.5);
-        }
-        .header p { font-size: 20px; color: #aaa; margin-top: 10px; }
+        /* Шапка */
+        .header { text-align: center; padding: 100px 20px; background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('https://imgur.com'); background-size: cover; }
+        .header h1 { font-size: 70px; color: #2ecc71; margin: 0; letter-spacing: 5px; }
+        .header p { font-size: 20px; color: #ccc; }
 
-        /* СІТКА ТОВАРІВ */
-        .shop-container {
-            max-width: 1200px;
-            margin: 50px auto;
-            padding: 20px;
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 25px;
-        }
+        /* Вітрина */
+        .container { max-width: 1200px; margin: 50px auto; display: flex; flex-wrap: wrap; justify-content: center; gap: 25px; }
+        
+        /* Картка */
+        .card { background: #161616; border: 1px solid #333; border-radius: 15px; width: 260px; padding: 30px; text-align: center; transition: 0.3s; }
+        .card:hover { transform: translateY(-10px); border-color: #2ecc71; box-shadow: 0 10px 30px rgba(46, 204, 113, 0.2); }
+        .card h3 { font-size: 28px; margin: 10px 0; }
+        .card .price { font-size: 24px; color: #2ecc71; font-weight: bold; display: block; margin-bottom: 25px; }
 
-        /* КАРТКА ТОВАРУ */
-        .product-card {
-            background: #1a1a1a;
-            border-radius: 15px;
-            padding: 30px;
-            text-align: center;
-            border: 1px solid #333;
-            transition: 0.4s;
+        /* Кнопка (Пряме посилання) */
+        .buy-link { 
+            background: #2ecc71; color: #000; text-decoration: none; display: block; 
+            padding: 15px; border-radius: 8px; font-weight: bold; text-transform: uppercase; transition: 0.3s; 
         }
-        .product-card:hover {
-            transform: translateY(-10px);
-            border-color: #2ecc71;
-            box-shadow: 0 15px 30px rgba(0,0,0,0.6);
-        }
-        .product-card h3 { margin: 0 0 10px; font-size: 26px; }
-        .product-card .price {
-            display: block;
-            font-size: 22px;
-            color: #2ecc71;
-            font-weight: bold;
-            margin-bottom: 25px;
-        }
+        .buy-link:hover { background: #27ae60; transform: scale(1.05); }
 
-        /* КНОПКА КУПИТИ */
-        .buy-button {
-            background: #2ecc71;
-            color: #000;
-            border: none;
-            padding: 15px 30px;
-            border-radius: 8px;
-            font-weight: 900;
-            text-transform: uppercase;
-            cursor: pointer;
-            width: 100%;
-            transition: 0.3s;
-        }
-        .buy-button:hover {
-            background: #27ae60;
-            transform: scale(1.05);
-        }
-
-        /* ФУТЕР */
-        .footer {
-            text-align: center;
-            padding: 50px;
-            color: #444;
-            border-top: 1px solid #222;
-        }
+        .footer { text-align: center; padding: 60px; color: #444; }
     </style>
 </head>
 <body>
 
-    <nav class="nav">
-        <a href="https://mirworld.fun">Головна</a>
-        <a href="/shop">Магазин</a>
+    <div class="nav">
+        <a href="/">Головна</a>
         <a href="/rules">Правила</a>
-        <a href="https://llaun.ch">Лаунчер</a>
-    </nav>
-
-    <header class="header">
-        <h1>MIRWORLD</h1>
-        <p>Найкращий ігровий досвід чекає на тебе</p>
-    </header>
-
-    <div class="shop-container" id="shop">
-        
-        <!-- ТОВАР 1 -->
-        <div class="product-card">
-            <h3>VIP</h3>
-            <span class="price">50 грн</span>
-            <button class="buy-button" onclick="window.location.href='/buy/17877'">Придбати</button>
-        </div>
-
-        <!-- ТОВАР 2 -->
-        <div class="product-card">
-            <h3>PREMIUM</h3>
-            <span class="price">100 грн</span>
-            <button class="buy-button" onclick="window.location.href='/buy/ID_ТОВАРУ'">Придбати</button>
-        </div>
-
-        <!-- ТОВАР 3 -->
-        <div class="product-card">
-            <h3>ULTRA</h3>
-            <span class="price">200 грн</span>
-            <button class="buy-button" onclick="window.location.href='/buy/ID_ТОВАРУ'">Придбати</button>
-        </div>
-
-        <!-- ТОВАР 4 -->
-        <div class="product-card">
-            <h3>ELITE</h3>
-            <span class="price">350 грн</span>
-            <button class="buy-button" onclick="window.location.href='/buy/ID_ТОВАРУ'">Придбати</button>
-        </div>
-
-        <!-- ТОВАР 5 -->
-        <div class="product-card">
-            <h3>LEGEND</h3>
-            <span class="price">500 грн</span>
-            <button class="buy-button" onclick="window.location.href='/buy/ID_ТОВАРУ'">Придбати</button>
-        </div>
-
-        <!-- ТОВАР 6 -->
-        <div class="product-card">
-            <h3>1,000 МОНЕТ</h3>
-            <span class="price">25 грн</span>
-            <button class="buy-button" onclick="window.location.href='/buy/ID_ТОВАРУ'">Придбати</button>
-        </div>
-
-        <!-- ТОВАР 7 -->
-        <div class="product-card">
-            <h3>5,000 МОНЕТ</h3>
-            <span class="price">100 грн</span>
-            <button class="buy-button" onclick="window.location.href='/buy/ID_ТОВАРУ'">Придбати</button>
-        </div>
-
-        <!-- ТОВАР 8 -->
-        <div class="product-card">
-            <h3>РОЗБАН</h3>
-            <span class="price">150 грн</span>
-            <button class="buy-button" onclick="window.location.href='/buy/ID_ТОВАРУ'">Придбати</button>
-        </div>
-
-        <!-- ТОВАР 9 -->
-        <div class="product-card">
-            <h3>КЕЙС</h3>
-            <span class="price">40 грн</span>
-            <button class="buy-button" onclick="window.location.href='/buy/ID_ТОВАРУ'">Придбати</button>
-        </div>
-
-        <!-- ТОВАР 10 -->
-        <div class="product-card">
-            <h3>СПОНСОР</h3>
-            <span class="price">1000 грн</span>
-            <button class="buy-button" onclick="window.location.href='/buy/ID_ТОВАРУ'">Придбати</button>
-        </div>
-
+        <a href="/launcher">Лаунчер</a>
+        <a href="/support">Підтримка</a>
     </div>
 
-    <footer class="footer">
-        &copy; 2024 MIRWORLD. Всі права захищені.<br>
-        Не є офіційним сервісом Mojang.
-    </footer>
+    <div class="header">
+        <h1>MIR WORLD</h1>
+        <p>Обирай свій статус та домінуй на сервері</p>
+    </div>
+
+    <div class="container">
+        <!-- 1 -->
+        <div class="card">
+            <h3>VIP</h3>
+            <span class="price">50 ₴</span>
+            <a href="/buy/17877" class="buy-link">Придбати</a>
+        </div>
+        <!-- 2 -->
+        <div class="card">
+            <h3>PREMIUM</h3>
+            <span class="price">100 ₴</span>
+            <a href="/buy/АЙДІ" class="buy-link">Придбати</a>
+        </div>
+        <!-- 3 -->
+        <div class="card">
+            <h3>ULTRA</h3>
+            <span class="price">200 ₴</span>
+            <a href="/buy/АЙДІ" class="buy-link">Придбати</a>
+        </div>
+        <!-- 4 -->
+        <div class="card">
+            <h3>ELITE</h3>
+            <span class="price">350 ₴</span>
+            <a href="/buy/АЙДІ" class="buy-link">Придбати</a>
+        </div>
+        <!-- 5 -->
+        <div class="card">
+            <h3>LEGEND</h3>
+            <span class="price">500 ₴</span>
+            <a href="/buy/АЙДІ" class="buy-link">Придбати</a>
+        </div>
+        <!-- 6 -->
+        <div class="card">
+            <h3>1000 МОНЕТ</h3>
+            <span class="price">25 ₴</span>
+            <a href="/buy/АЙДІ" class="buy-link">Придбати</a>
+        </div>
+        <!-- 7 -->
+        <div class="card">
+            <h3>5000 МОНЕТ</h3>
+            <span class="price">100 ₴</span>
+            <a href="/buy/АЙДІ" class="buy-link">Придбати</a>
+        </div>
+        <!-- 8 -->
+        <div class="card">
+            <h3>РОЗБАН</h3>
+            <span class="price">150 ₴</span>
+            <a href="/buy/АЙДІ" class="buy-link">Придбати</a>
+        </div>
+        <!-- 9 -->
+        <div class="card">
+            <h3>КЕЙС</h3>
+            <span class="price">40 ₴</span>
+            <a href="/buy/АЙДІ" class="buy-link">Придбати</a>
+        </div>
+        <!-- 10 -->
+        <div class="card">
+            <h3>СПОНСОР</h3>
+            <span class="price">1200 ₴</span>
+            <a href="/buy/АЙДІ" class="buy-link">Придбати</a>
+        </div>
+    </div>
+
+    <div class="footer">
+        © 2024 MIRWORLD. Всі права захищені.
+    </div>
 
 </body>
 </html>
