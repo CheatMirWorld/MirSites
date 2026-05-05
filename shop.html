@@ -1,193 +1,209 @@
-<style>
-    @import url('https://googleapis.com');
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MirWorld - Магазин</title>
+    <style>
+        /* ОСНОВНІ СТИЛІ */
+        body { 
+            background-color: #0d0d0d; 
+            color: #ffffff; 
+            margin: 0; 
+            font-family: 'Segoe UI', Roboto, sans-serif;
+        }
 
-    body { 
-        background-color: #0b0b0b; 
-        color: #f5f5f5; 
-        margin: 0; 
-        font-family: 'Montserrat', sans-serif; 
-    }
+        /* НАВІГАЦІЯ */
+        .nav {
+            background: #161616;
+            display: flex;
+            justify-content: center;
+            padding: 15px 0;
+            border-bottom: 3px solid #2ecc71;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+        .nav a {
+            color: white;
+            text-decoration: none;
+            margin: 0 20px;
+            font-weight: bold;
+            text-transform: uppercase;
+            font-size: 14px;
+            transition: 0.3s;
+        }
+        .nav a:hover { color: #2ecc71; }
 
-    /* Шапка MirWorld */
-    .mir-header { 
-        background: linear-gradient(rgba(0,0,0,0.8), rgba(0,0,0,0.8)), url('https://unsplash.com');
-        background-size: cover;
-        background-position: center;
-        padding: 80px 20px; 
-        text-align: center; 
-        border-bottom: 4px solid #43a047;
-    }
-    .mir-header h1 { 
-        font-size: 60px; 
-        margin: 0; 
-        color: #43a047; 
-        font-weight: 900;
-        text-transform: uppercase;
-        letter-spacing: 8px;
-        text-shadow: 0 0 20px rgba(67, 160, 71, 0.6);
-    }
-    .mir-header p { color: #888; font-size: 18px; margin-top: 10px; text-transform: uppercase; letter-spacing: 2px; }
+        /* ШАПКА */
+        .header {
+            text-align: center;
+            padding: 80px 20px;
+            background: linear-gradient(rgba(0,0,0,0.8), rgba(0,0,0,0.8)), url('https://unsplash.com');
+            background-size: cover;
+            background-position: center;
+        }
+        .header h1 {
+            font-size: 64px;
+            margin: 0;
+            color: #2ecc71;
+            letter-spacing: 10px;
+            text-shadow: 0 0 20px rgba(46, 204, 113, 0.5);
+        }
+        .header p { font-size: 20px; color: #aaa; margin-top: 10px; }
 
-    /* Навігація */
-    .navbar { 
-        background: #121212; 
-        display: flex; 
-        justify-content: center; 
-        gap: 10px;
-        position: sticky; 
-        top: 0; 
-        z-index: 1000;
-        border-bottom: 1px solid #222;
-    }
-    .navbar a { 
-        color: #eee; 
-        text-decoration: none; 
-        padding: 20px 30px; 
-        font-weight: 700; 
-        font-size: 13px; 
-        text-transform: uppercase;
-        transition: 0.3s;
-    }
-    .navbar a:hover { color: #43a047; background: rgba(67, 160, 71, 0.1); }
+        /* СІТКА ТОВАРІВ */
+        .shop-container {
+            max-width: 1200px;
+            margin: 50px auto;
+            padding: 20px;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 25px;
+        }
 
-    /* Контейнер товарів */
-    .shop-grid { 
-        max-width: 1200px; 
-        margin: 50px auto; 
-        padding: 20px;
-        display: grid; 
-        grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); 
-        gap: 30px; 
-    }
+        /* КАРТКА ТОВАРУ */
+        .product-card {
+            background: #1a1a1a;
+            border-radius: 15px;
+            padding: 30px;
+            text-align: center;
+            border: 1px solid #333;
+            transition: 0.4s;
+        }
+        .product-card:hover {
+            transform: translateY(-10px);
+            border-color: #2ecc71;
+            box-shadow: 0 15px 30px rgba(0,0,0,0.6);
+        }
+        .product-card h3 { margin: 0 0 10px; font-size: 26px; }
+        .product-card .price {
+            display: block;
+            font-size: 22px;
+            color: #2ecc71;
+            font-weight: bold;
+            margin-bottom: 25px;
+        }
 
-    /* Картка MirWorld */
-    .product-card { 
-        background: #181818; 
-        border: 1px solid #282828; 
-        border-radius: 15px; 
-        overflow: hidden; 
-        transition: all 0.4s ease;
-        text-align: center;
-        padding: 25px;
-    }
-    .product-card:hover { 
-        transform: translateY(-10px); 
-        border-color: #43a047;
-        box-shadow: 0 15px 35px rgba(0,0,0,0.8);
-    }
-    .product-card h3 { font-size: 24px; margin: 15px 0; color: #fff; }
-    .product-card .price-tag { 
-        display: inline-block;
-        background: rgba(67, 160, 71, 0.1);
-        color: #43a047;
-        padding: 5px 15px;
-        border-radius: 50px;
-        font-weight: 900;
-        margin-bottom: 20px;
-        font-size: 18px;
-    }
+        /* КНОПКА КУПИТИ */
+        .buy-button {
+            background: #2ecc71;
+            color: #000;
+            border: none;
+            padding: 15px 30px;
+            border-radius: 8px;
+            font-weight: 900;
+            text-transform: uppercase;
+            cursor: pointer;
+            width: 100%;
+            transition: 0.3s;
+        }
+        .buy-button:hover {
+            background: #27ae60;
+            transform: scale(1.05);
+        }
 
-    /* Кнопка */
-    .buy-button { 
-        background: #43a047; 
-        color: #fff; 
-        border: none; 
-        padding: 14px; 
-        width: 100%; 
-        border-radius: 8px; 
-        font-weight: 900; 
-        text-transform: uppercase; 
-        cursor: pointer; 
-        transition: 0.3s;
-        box-shadow: 0 4px 0 #2e7d32;
-    }
-    .buy-button:hover { background: #4caf50; transform: translateY(-2px); box-shadow: 0 6px 0 #2e7d32; }
-    .buy-button:active { transform: translateY(2px); box-shadow: none; }
+        /* ФУТЕР */
+        .footer {
+            text-align: center;
+            padding: 50px;
+            color: #444;
+            border-top: 1px solid #222;
+        }
+    </style>
+</head>
+<body>
 
-    .footer { text-align: center; padding: 60px; color: #444; font-size: 13px; }
-</style>
+    <nav class="nav">
+        <a href="/">Головна</a>
+        <a href="#shop">Магазин</a>
+        <a href="/rules">Правила</a>
+        <a href="/launcher">Лаунчер</a>
+    </nav>
 
-<!-- ШАПКА САЙТУ -->
-<div class="mir-header">
-    <h1>MIR WORLD</h1>
-    <p>Проект, створений для гравців</p>
-</div>
+    <header class="header">
+        <h1>MIRWORLD</h1>
+        <p>Найкращий ігровий досвід чекає на тебе</p>
+    </header>
 
-<!-- МЕНЮ -->
-<div class="navbar">
-    <a href="/">Головна</a>
-    <a href="/shop">Магазин</a>
-    <a href="/rules">Правила</a>
-    <a href="/launcher">Лаунчер</a>
-</div>
+    <div class="shop-container" id="shop">
+        
+        <!-- ТОВАР 1 -->
+        <div class="product-card">
+            <h3>VIP</h3>
+            <span class="price">50 грн</span>
+            <button class="buy-button" onclick="window.location.href='/buy/ID_ТОВАРУ'">Придбати</button>
+        </div>
 
-<!-- ВІТРИНА -->
-<div class="shop-grid">
-    <!-- ТОВАР 1 -->
-    <div class="product-card">
-        <h3>VIP</h3>
-        <span class="price-tag">49 грн</span>
-        <button class="buy-button" onclick="trademc.buy(111111)">Придбати</button>
+        <!-- ТОВАР 2 -->
+        <div class="product-card">
+            <h3>PREMIUM</h3>
+            <span class="price">100 грн</span>
+            <button class="buy-button" onclick="window.location.href='/buy/ID_ТОВАРУ'">Придбати</button>
+        </div>
+
+        <!-- ТОВАР 3 -->
+        <div class="product-card">
+            <h3>ULTRA</h3>
+            <span class="price">200 грн</span>
+            <button class="buy-button" onclick="window.location.href='/buy/ID_ТОВАРУ'">Придбати</button>
+        </div>
+
+        <!-- ТОВАР 4 -->
+        <div class="product-card">
+            <h3>ELITE</h3>
+            <span class="price">350 грн</span>
+            <button class="buy-button" onclick="window.location.href='/buy/ID_ТОВАРУ'">Придбати</button>
+        </div>
+
+        <!-- ТОВАР 5 -->
+        <div class="product-card">
+            <h3>LEGEND</h3>
+            <span class="price">500 грн</span>
+            <button class="buy-button" onclick="window.location.href='/buy/ID_ТОВАРУ'">Придбати</button>
+        </div>
+
+        <!-- ТОВАР 6 -->
+        <div class="product-card">
+            <h3>1,000 МОНЕТ</h3>
+            <span class="price">25 грн</span>
+            <button class="buy-button" onclick="window.location.href='/buy/ID_ТОВАРУ'">Придбати</button>
+        </div>
+
+        <!-- ТОВАР 7 -->
+        <div class="product-card">
+            <h3>5,000 МОНЕТ</h3>
+            <span class="price">100 грн</span>
+            <button class="buy-button" onclick="window.location.href='/buy/ID_ТОВАРУ'">Придбати</button>
+        </div>
+
+        <!-- ТОВАР 8 -->
+        <div class="product-card">
+            <h3>РОЗБАН</h3>
+            <span class="price">150 грн</span>
+            <button class="buy-button" onclick="window.location.href='/buy/ID_ТОВАРУ'">Придбати</button>
+        </div>
+
+        <!-- ТОВАР 9 -->
+        <div class="product-card">
+            <h3>КЕЙС</h3>
+            <span class="price">40 грн</span>
+            <button class="buy-button" onclick="window.location.href='/buy/ID_ТОВАРУ'">Придбати</button>
+        </div>
+
+        <!-- ТОВАР 10 -->
+        <div class="product-card">
+            <h3>СПОНСОР</h3>
+            <span class="price">1000 грн</span>
+            <button class="buy-button" onclick="window.location.href='/buy/ID_ТОВАРУ'">Придбати</button>
+        </div>
+
     </div>
-    <!-- ТОВАР 2 -->
-    <div class="product-card">
-        <h3>PREMIUM</h3>
-        <span class="price-tag">99 грн</span>
-        <button class="buy-button" onclick="trademc.buy(222222)">Придбати</button>
-    </div>
-    <!-- ТОВАР 3 -->
-    <div class="product-card">
-        <h3>ULTRA</h3>
-        <span class="price-tag">199 грн</span>
-        <button class="buy-button" onclick="trademc.buy(333333)">Придбати</button>
-    </div>
-    <!-- ТОВАР 4 -->
-    <div class="product-card">
-        <h3>ELITE</h3>
-        <span class="price-tag">349 грн</span>
-        <button class="buy-button" onclick="trademc.buy(444444)">Придбати</button>
-    </div>
-    <!-- ТОВАР 5 -->
-    <div class="product-card">
-        <h3>LEGEND</h3>
-        <span class="price-tag">499 грн</span>
-        <button class="buy-button" onclick="trademc.buy(555555)">Придбати</button>
-    </div>
-    <!-- ТОВАР 6 -->
-    <div class="product-card">
-        <h3>1000 МОНЕТ</h3>
-        <span class="price-tag">25 грн</span>
-        <button class="buy-button" onclick="trademc.buy(666666)">Придбати</button>
-    </div>
-    <!-- ТОВАР 7 -->
-    <div class="product-card">
-        <h3>5000 МОНЕТ</h3>
-        <span class="price-tag">100 грн</span>
-        <button class="buy-button" onclick="trademc.buy(777777)">Придбати</button>
-    </div>
-    <!-- ТОВАР 8 -->
-    <div class="product-card">
-        <h3>РОЗБАН</h3>
-        <span class="price-tag">150 грн</span>
-        <button class="buy-button" onclick="trademc.buy(888888)">Придбати</button>
-    </div>
-    <!-- ТОВАР 9 -->
-    <div class="product-card">
-        <h3>КЕЙС</h3>
-        <span class="price-tag">39 грн</span>
-        <button class="buy-button" onclick="trademc.buy(999999)">Придбати</button>
-    </div>
-    <!-- ТОВАР 10 -->
-    <div class="product-card">
-        <h3>SPONSOR</h3>
-        <span class="price-tag">999 грн</span>
-        <button class="buy-button" onclick="trademc.buy(000000)">Придбати</button>
-    </div>
-</div>
 
-<div class="footer">
-    &copy; 2024 MirWorld Studio. Усі права захищені.
-</div>
+    <footer class="footer">
+        &copy; 2024 MIRWORLD. Всі права захищені.<br>
+        Не є офіційним сервісом Mojang.
+    </footer>
 
-<!-- ПІДКЛЮЧЕННЯ СКРИПТА ОПЛАТИ -->
-<script src="https://trademc.org"></script>
+</body>
+</html>
