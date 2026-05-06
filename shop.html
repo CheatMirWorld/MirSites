@@ -166,7 +166,19 @@
             const url = `https://anypay.io{projectID}&amount=${currentPrice}&pay_id=${Date.now()}&currency=RUB&desc=${desc}`;
             window.location.href = url;
         }
+        <script>
+            function goToAnyPay() {
+            const nick = document.getElementById('mainNick').value;
+            const projectID = "17669"; 
+            const payID = Date.now();
+            const desc = encodeURIComponent(`Донат ${currentItem} для ${nick}`);
+            
+            const url = `https://anypay.io{projectID}&amount=${currentPrice}&pay_id=${payID}&currency=rub&desc=${desc}`;
+            window.location.href = url;
+        }
 
+        // Тут також інші функції (openModal, closeModal тощо)
+    </script>
         // Закрытие при клике на фон
         window.onclick = function(event) {
             const modal = document.getElementById('modal');
