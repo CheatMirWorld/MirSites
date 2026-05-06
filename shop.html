@@ -7,7 +7,7 @@
     <link href="https://googleapis.com" rel="stylesheet">
     <link rel="stylesheet" href="https://cloudflare.com">
     
-    <!-- ПІДКЛЮЧЕННЯ API TRADEMC -->
+    <!-- ПОДКЛЮЧЕНИЕ API TRADEMC -->
     <script src="https://api.trademc.org/trademcapi.js"></script>
 
     <style>
@@ -24,7 +24,6 @@
             background-color: var(--bg);
             color: white;
             overflow-x: hidden;
-            /* Фоновий градієнт як на головній */
             background: radial-gradient(circle at center, #251a0b 0%, #0d0d0d 100%);
             min-height: 100vh;
         }
@@ -46,15 +45,15 @@
         .nav-links a { text-decoration: none; color: white; font-weight: 700; text-transform: uppercase; font-size: 0.85rem; transition: 0.3s; }
         .nav-links a:hover, .nav-links a.active { color: var(--primary); }
 
-        /* --- КОНТЕЙНЕР ФОРМИ --- */
+        /* --- КОНТЕЙНЕР МАГАЗИНА --- */
         .shop-container {
-            max-width: 600px;
-            margin: 150px auto 60px;
+            max-width: 550px;
+            margin: 140px auto 40px;
             padding: 40px;
             background: var(--card);
             border-radius: 24px;
             border: 1px solid var(--border);
-            box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+            box-shadow: 0 20px 50px rgba(0,0,0,0.6);
             animation: fadeInUp 0.8s ease;
         }
 
@@ -64,37 +63,49 @@
             text-transform: uppercase;
             margin-bottom: 30px;
             letter-spacing: 2px;
+            color: var(--primary);
         }
 
-        /* Стилізація елементів TradeMC всередині форми */
+        /* КАСТОМИЗАЦИЯ ФОРМЫ TRADEMC */
         #trademc-buyform {
             color: white !important;
         }
         
-        /* Цей блок змушує стандартну форму TradeMC виглядати краще */
-        #trademc-buyform input, #trademc-buyform select {
+        /* Стили полей ввода внутри формы */
+        #trademc-buyform input, 
+        #trademc-buyform select {
             background: #222 !important;
             border: 1px solid var(--border) !important;
             color: white !important;
-            border-radius: 8px !important;
-            padding: 10px !important;
+            border-radius: 10px !important;
+            padding: 12px !important;
             margin-bottom: 15px !important;
+            width: 100% !important;
+            outline: none !important;
         }
 
+        #trademc-buyform input:focus {
+            border-color: var(--primary) !important;
+        }
+
+        /* Стили кнопки продолжить */
         #trademc-buyform button {
             background: var(--primary) !important;
             color: black !important;
             font-weight: 900 !important;
             text-transform: uppercase !important;
-            border-radius: 10px !important;
+            border-radius: 12px !important;
             border: none !important;
+            padding: 15px !important;
+            width: 100% !important;
             cursor: pointer !important;
             transition: 0.3s !important;
+            margin-top: 10px !important;
         }
 
         #trademc-buyform button:hover {
-            transform: scale(1.02);
-            filter: brightness(1.1);
+            transform: translateY(-2px) !important;
+            box-shadow: 0 5px 15px rgba(255, 157, 0, 0.4) !important;
         }
 
         @keyframes fadeInUp {
@@ -104,7 +115,7 @@
 
         @media (max-width: 768px) {
             .nav-links { display: none; }
-            .shop-container { margin: 100px 20px; padding: 25px; }
+            .shop-container { margin: 100px 15px; padding: 25px; }
         }
     </style>
 </head>
@@ -123,32 +134,30 @@
     </header>
 
     <div class="shop-container">
-        <h1>Покупка доната</h1>
+        <h1>Донат-услуги</h1>
         
-        <!-- МІСЦЕ ДЛЯ ФОРМИ TRADEMC -->
+        <!-- ФОРМА TRADEMC -->
         <div id="trademc-buyform"></div>
 
         <script>
-            // Твій скрипт TradeMC
-            // ЗАМІНИ "Shop":"1" на свій справжній номер магазину з TradeMC!
             TrademcAPI.GetBuyForm({
-                "Shop":"1", 
-                "Title":"Выберите товар",
+                "Shop":"241684",
+                "Title":"Купить донат",
                 "Nickname":"Введите ваш никнейм",
-                "Item":"Выберите категорию",
-                "Coupon":"Введите купон (если есть)",
-                "Button":"Продолжить к оплате",
-                "Success_URL":"https://mirworld.fun",
-                "Pending_URL":"https://mirworld.fun",
-                "Fail_URL":"https://mirworld.fun",
+                "Item":"Выберите товар",
+                "Coupon":"Введите купон, если есть",
+                "Button":"Продолжить",
+                "Success_URL":"https://trademc.org",
+                "Pending_URL":"https://trademc.org",
+                "Fail_URL":"https://trademc.org",
                 "PastPlaceID":"trademc-buyform"
             });
         </script>
     </div>
 
-    <p style="text-align: center; opacity: 0.4; font-size: 0.8rem;">
-        Оплачивая товар, вы подтверждаете согласие с правилами сервера.
-    </p>
+    <div style="text-align: center; opacity: 0.4; padding-bottom: 40px;">
+        <p><i class="fas fa-shield-alt"></i> Безопасная оплата через TradeMC</p>
+    </div>
 
 </body>
 </html>
