@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Магазин — MirWorld</title>
+    <title>MirWorld — Магазин</title>
     <link href="https://googleapis.com" rel="stylesheet">
     <link rel="stylesheet" href="https://cloudflare.com">
     <style>
@@ -88,10 +88,10 @@
         <nav>
             <div class="logo">MirWorld</div>
             <ul class="nav-links">
-                <li><a href="#">Главная</a></li>
-                <li><a href="#" class="active">Магазин</a></li>
-                <li><a href="#">Правила</a></li>
-                <li><a href="#">Поддержка</a></li>
+                <li><a href="https://MirWorld.fun">Главная</a></li>
+                <li><a href="/shop" class="active">Магазин</a></li>
+                <li><a href="/rules">Правила</a></li>
+                <li><a href="/help">Поддержка</a></li>
             </ul>
         </nav>
     </header>
@@ -160,7 +160,7 @@
 
         function goToAnyPay() {
             const nick = document.getElementById('mainNick').value;
-            const projectID = "ВАШ_ID"; // ЗАМЕНИТЕ НА ВАШ ID ИЗ ANYPAY
+            const projectID = "17669"; // ЗАМЕНИТЕ НА ВАШ ID ИЗ ANYPAY
             const desc = encodeURIComponent(`Донат ${currentItem} для ${nick}`);
             
             const url = `https://anypay.io{projectID}&amount=${currentPrice}&pay_id=${Date.now()}&currency=RUB&desc=${desc}`;
