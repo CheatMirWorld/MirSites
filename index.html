@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MirWorld — Главная</title>
+    <link href="https://googleapis.com" rel="stylesheet">
+    <!-- Библиотека анимаций -->
+    <link rel="stylesheet" href="https://cloudflare.com"/>
+    <style>
+        :root {
+            --bg-color: #0d0d0d;
+            --accent-color: #ffcc00;
+            --easy-color: #4caf50;
+            --hard-color: #f44336;
+            --text-color: #f0f0f0;
+            --card-bg: #1a1a1a;
+            --header-bg: rgba(13, 13, 13, 0.95);
+        }
+
+        * { box-sizing: border-box; scroll-behavior: smooth; }
+
+        body {
+            margin: 0;
+            font-family: 'Montserrat', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* --- ХЕДЕР --- */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: var(--header-bg);
+            padding: 20px 10%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 1000;
+            border-bottom: 1px solid rgba(255, 204, 0, 0.2);
+            backdrop-filter: blur(10px);
+        }
+
+        .logo { font-weight: 900; font-size: 1.5rem; color: var(--accent-color); text-transform: uppercase; }
+
+        .nav-links { display: flex; list-style: none; gap: 30px; margin: 0; }
+        .nav-links a { 
+            text-decoration: none; 
+            color: #fff; 
+            font-weight: 700; 
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            transition: 0.3s;
+        }
+        .nav-links a:hover { color: var(--accent-color); }
+
+        /* --- ГЛАВНЫЙ ЭКРАН --- */
+        header {
+            height: 100vh;
+            background: linear-gradient(rgba(0,0,0,0.85), rgba(0,0,0,0.85)), 
+                        url('https://unsplash.com') no-repeat center center/cover;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 20px;
+        }
+
+        .hero-title {
+            font-size: clamp(3.5rem, 12vw, 6rem);
+            font-weight: 900;
+            margin: 0;
+            color: var(--accent-color);
+            text-shadow: 0 0 30px rgba(255, 204, 0, 0.4);
+        }
+
+        .ip-box {
+            margin-top: 30px;
+            background: var(--accent-color);
+            color: #000;
+            padding: 25px 50px;
+            font-size: 2rem;
+            font-weight: 900;
+            border-radius: 12px;
+            cursor: pointer;
+            border: none;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            animation: pulse 2s infinite;
+        }
+
+        .ip-box:hover { transform: scale(1.05); box-shadow: 0 0 50px var(--accent-color); }
+
+        @keyframes pulse {
+            0% { box-shadow: 0 0 0 0 rgba(255, 204, 0, 0.4); }
+            70% { box-shadow: 0 0 0 20px rgba(255, 204, 0, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(255, 204, 0, 0); }
+        }
+
+        /* --- СЕКЦИИ --- */
+        section { padding: 100px 10%; opacity: 0; transform: translateY(30px); transition: 0.8s all ease-out; }
+        section.visible { opacity: 1; transform: translateY(0); }
+
+        h2 { text-align: center; font-size: 3rem; margin-bottom: 50px; text-transform: uppercase; }
+
+        .modes { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 40px; }
+
+        .mode-card {
+            background: var(--card-bg);
+            padding: 50px 30px;
+            border-radius: 20px;
+            text-align: center;
+            transition: 0.4s;
+            position: relative;
+            overflow: hidden;
+            border: 1px solid #222;
+        }
+
+        .mode-card:hover { transform: translateY(-10px); background: #222; border-color: var(--accent-color); }
+
+        .mode-card h3 { font-size: 2rem; margin-bottom: 20px; }
+        .easy h3 { color: var(--easy-color); }
+        .hard h3 { color: var(--hard-color); }
+
+        .shop-btn {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 15px 40px;
+            background: var(--accent-color);
+            color: #000;
+            text-decoration: none;
+            font-weight: 900;
+            border-radius: 50px;
+            transition: 0.3s;
+        }
+
+        footer { background: #050505; padding: 50px; text-align: center; border-top: 1px solid #111; color: #444; }
+
+    </style>
+</head>
+<body>
+
+    <nav>
+        <div class="logo">MirWorld</div>
+        <ul class="nav-links">
+            <li><a href="https://mirworld.fun">Главная</a></li>
+            <li><a href="https://shop.MirWorld.fun">Магазин</a></li>
+            <li><a href="/rules">Правила</a></li>
+            <li><a href="https://discord.gg/Q96s3DQdMj">Поддержка</a></li>
+        </ul>
+    </nav>
+
+    <header>
+        <div class="animate__animated animate__fadeInDown">
+            <div style="background: rgba(255,255,255,0.1); padding: 5px 20px; border-radius: 50px; display: inline-block; margin-bottom: 20px;">
+                Версия: 1.16.5 - 1.20.1
+            </div>
+            <h1 class="hero-title">MirWorld</h1>
+            <p style="font-size: 1.5rem; max-width: 700px; margin: 20px auto; opacity: 0.8;">
+                Надоели руины и реклама? Добро пожаловать в мир настоящего хардкора и свободы.
+            </p>
+        </div>
+        
+        <button class="ip-box animate__animated animate__zoomIn animate__delay-1s" onclick="copyIP()">
+            mc.MirWorld.fun
+        </button>
+        <p class="animate__animated animate__fadeIn animate__delay-2s" style="margin-top: 20px; color: var(--accent-color);">Нажми, чтобы начать приключение</p>
+    </header>
+
+    <section id="modes">
+        <h2>⚔️ Наши режимы</h2>
+        <div class="modes">
+            <div class="mode-card easy">
+                <h3>🔥 EASY</h3>
+                <p>Классический драйв и быстрый старт. Идеально для тех, кто любит динамичные битвы и масштабные клановые войны.</p>
+            </div>
+            <div class="mode-card hard">
+                <h3>💀 HARD</h3>
+                <p>Выживание на пределе возможностей. Здесь каждая ошибка стоит дорого, а ресурсы ценятся на вес золота.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="features" style="background: #111;">
+        <h2>💎 Преимущества</h2>
+        <div class="modes">
+            <div class="mode-card" style="padding: 30px;">
+                <h4 style="color:var(--accent-color)">Честная игра</h4>
+                <p>Никаких рисованных админок. Твой успех зависит только от твоего скилла.</p>
+            </div>
+            <div class="mode-card" style="padding: 30px;">
+                <h4 style="color:var(--accent-color)">Чистый мир</h4>
+                <p>Мы убрали весь мусор со спавна. Только важная информация и минимализм.</p>
+            </div>
+            <div class="mode-card" style="padding: 30px;">
+                <h4 style="color:var(--accent-color)">Стабильность</h4>
+                <p>ТПС не падает, а техподдержка всегда готова прийти на помощь.</p>
+            </div>
+        </div>
+        <div style="text-align: center; margin-top: 50px;">
+            <a href="http://MirWorld.fun" class="shop-btn">В МАГАЗИН ПРОЕКТА</a>
+        </div>
+    </section>
+
+    <footer id="rules">
+        <p>&copy; 2024 MirWorld. Мы строим историю, которую пишешь ТЫ.</p>
+        <p style="font-size: 0.7rem; margin-top: 20px;">Not an official Minecraft product. Not approved by or associated with Mojang.</p>
+    </footer>
+
+    <script>
+        // Скрипт копирования
+        function copyIP() {
+            const ip = "mc.MirWorld.fun";
+            navigator.clipboard.writeText(ip).then(() => {
+                const btn = document.querySelector('.ip-box');
+                const originalText = btn.innerText;
+                btn.innerText = "СКОПИРОВАНО!";
+                btn.style.background = "#fff";
+                setTimeout(() => {
+                    btn.innerText = originalText;
+                    btn.style.background = "var(--accent-color)";
+                }, 2000);
+            });
+        }
+
+        // Анимация появления при скролле
+        const observerOptions = { threshold: 0.2 };
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('section').forEach(section => {
+            observer.observe(section);
+        });
+    </script>
+</body>
+</html>
