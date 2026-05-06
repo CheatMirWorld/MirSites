@@ -6,13 +6,16 @@
     <title>Магазин — MirWorld</title>
     <link href="https://googleapis.com" rel="stylesheet">
     <link rel="stylesheet" href="https://cloudflare.com">
+    
+    <!-- ПІДКЛЮЧЕННЯ API TRADEMC -->
+    <script src="https://api.trademc.org/trademcapi.js"></script>
+
     <style>
         :root {
             --primary: #ff9d00;
             --bg: #0d0d0d;
             --card: #161616;
             --border: rgba(255, 255, 255, 0.1);
-            --transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
         }
 
         * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -21,15 +24,18 @@
             background-color: var(--bg);
             color: white;
             overflow-x: hidden;
+            /* Фоновий градієнт як на головній */
+            background: radial-gradient(circle at center, #251a0b 0%, #0d0d0d 100%);
+            min-height: 100vh;
         }
 
-        /* --- ХЕДЕР (З ГОЛОВНОЇ) --- */
+        /* --- ХЕДЕР --- */
         header {
             position: fixed;
             top: 0; width: 100%; z-index: 1000;
-            background: rgba(0, 0, 0, 0.9); backdrop-filter: blur(15px);
+            background: rgba(0, 0, 0, 0.9);
+            backdrop-filter: blur(15px);
             border-bottom: 2px solid var(--primary);
-            animation: slideDown 0.6s ease;
         }
         nav {
             max-width: 1200px; margin: 0 auto; padding: 15px 20px;
@@ -40,74 +46,73 @@
         .nav-links a { text-decoration: none; color: white; font-weight: 700; text-transform: uppercase; font-size: 0.85rem; transition: 0.3s; }
         .nav-links a:hover, .nav-links a.active { color: var(--primary); }
 
-        /* --- ІНТЕРФЕЙС МАГАЗИНУ --- */
-        .wrapper { max-width: 1100px; margin: 140px auto 60px; padding: 0 20px; text-align: center; }
-        
-        .nick-box { margin-bottom: 50px; animation: fadeIn 0.8s ease; }
-        .nick-input {
-            width: 100%; max-width: 450px; padding: 20px;
-            background: var(--card); border: 2px solid var(--border);
-            border-radius: 15px; color: white; font-size: 1.2rem; font-weight: 700;
-            text-align: center; outline: none; transition: var(--transition);
-        }
-        .nick-input:focus { border-color: var(--primary); box-shadow: 0 0 25px rgba(255, 157, 0, 0.2); transform: scale(1.02); }
-
-        .products-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; }
-        
-        .card {
-            background: var(--card); border-radius: 24px; padding: 50px 30px;
-            border: 1px solid var(--border); transition: var(--transition);
-            position: relative; overflow: hidden;
+        /* --- КОНТЕЙНЕР ФОРМИ --- */
+        .shop-container {
+            max-width: 600px;
+            margin: 150px auto 60px;
+            padding: 40px;
+            background: var(--card);
+            border-radius: 24px;
+            border: 1px solid var(--border);
+            box-shadow: 0 20px 50px rgba(0,0,0,0.5);
             animation: fadeInUp 0.8s ease;
         }
-        .card:hover { transform: translateY(-15px); border-color: var(--primary); box-shadow: 0 20px 40px rgba(0,0,0,0.5); }
-        .card i { font-size: 4rem; color: var(--primary); margin-bottom: 25px; filter: drop-shadow(0 0 10px rgba(255,157,0,0.4)); }
-        .card h3 { font-size: 2rem; font-weight: 900; margin-bottom: 10px; }
-        .card .price { font-size: 1.5rem; font-weight: 700; color: #00ff00; margin-bottom: 30px; }
 
-        .buy-btn {
-            display: inline-block; width: 100%; padding: 16px;
-            background: var(--primary); color: black; font-weight: 900;
-            text-transform: uppercase; border-radius: 12px; cursor: pointer; border: none; transition: 0.3s;
-        }
-        .buy-btn:hover { filter: brightness(1.1); transform: scale(1.05); }
-
-        /* --- МОДАЛЬНЕ ВІКНО --- */
-        .modal-overlay {
-            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(0, 0, 0, 0.9); backdrop-filter: blur(10px);
-            display: flex; align-items: center; justify-content: center;
-            z-index: 2000; opacity: 0; visibility: hidden; transition: 0.3s;
-        }
-        .modal-overlay.active { opacity: 1; visibility: visible; }
-
-        .modal-content {
-            background: #1a1a1a; padding: 40px; border-radius: 30px;
-            max-width: 450px; width: 95%; text-align: center;
-            border: 2px solid var(--primary); transform: scale(0.7); transition: 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-        }
-        .modal-overlay.active .modal-content { transform: scale(1); }
-
-        .modal-nick { font-size: 1.5rem; color: var(--primary); font-weight: 900; margin: 15px 0 30px; display: block; }
-        .pay-confirm-btn {
-            background: var(--primary); color: black; padding: 18px; width: 100%;
-            border-radius: 12px; text-decoration: none; font-weight: 900; text-transform: uppercase;
-            display: flex; align-items: center; justify-content: center; gap: 10px; border: none; cursor: pointer;
+        h1 {
+            text-align: center;
+            font-weight: 900;
+            text-transform: uppercase;
+            margin-bottom: 30px;
+            letter-spacing: 2px;
         }
 
-        /* --- АНІМАЦІЇ --- */
-        @keyframes slideDown { from { transform: translateY(-100%); } to { transform: translateY(0); } }
-        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
-        @keyframes fadeInUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
+        /* Стилізація елементів TradeMC всередині форми */
+        #trademc-buyform {
+            color: white !important;
+        }
+        
+        /* Цей блок змушує стандартну форму TradeMC виглядати краще */
+        #trademc-buyform input, #trademc-buyform select {
+            background: #222 !important;
+            border: 1px solid var(--border) !important;
+            color: white !important;
+            border-radius: 8px !important;
+            padding: 10px !important;
+            margin-bottom: 15px !important;
+        }
 
-        @media (max-width: 768px) { .nav-links { display: none; } }
+        #trademc-buyform button {
+            background: var(--primary) !important;
+            color: black !important;
+            font-weight: 900 !important;
+            text-transform: uppercase !important;
+            border-radius: 10px !important;
+            border: none !important;
+            cursor: pointer !important;
+            transition: 0.3s !important;
+        }
+
+        #trademc-buyform button:hover {
+            transform: scale(1.02);
+            filter: brightness(1.1);
+        }
+
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @media (max-width: 768px) {
+            .nav-links { display: none; }
+            .shop-container { margin: 100px 20px; padding: 25px; }
+        }
     </style>
 </head>
 <body>
 
     <header>
         <nav>
-            <a href="#" class="logo">MirWorld</a>
+            <a href="index.html" class="logo">MirWorld</a>
             <ul class="nav-links">
                 <li><a href="index.html">Главная</a></li>
                 <li><a href="#" class="active">Магазин</a></li>
@@ -117,99 +122,33 @@
         </nav>
     </header>
 
-    <div class="wrapper">
-        <div class="nick-box">
-            <h1 style="margin-bottom: 20px; font-weight: 900; text-transform: uppercase;">Личный кабинет</h1>
-            <input type="text" id="playerNickname" class="nick-input" placeholder="Введите ваш никнейм...">
-        </div>
+    <div class="shop-container">
+        <h1>Покупка доната</h1>
+        
+        <!-- МІСЦЕ ДЛЯ ФОРМИ TRADEMC -->
+        <div id="trademc-buyform"></div>
 
-        <div class="products-grid">
-            <!-- Товар 1 -->
-            <div class="card">
-                <i class="fas fa-crown"></i>
-                <h3>VIP</h3>
-                <div class="price">99 ₽</div>
-                <button class="buy-btn" onclick="openPayment('VIP', 99)">Купить сейчас</button>
-            </div>
-
-            <!-- Товар 2 -->
-            <div class="card">
-                <i class="fas fa-gem"></i>
-                <h3>PREMIUM</h3>
-                <div class="price">249 ₽</div>
-                <button class="buy-btn" onclick="openPayment('PREMIUM', 249)">Купить сейчас</button>
-            </div>
-
-            <!-- Товар 3 -->
-            <div class="card">
-                <i class="fas fa-fire-alt"></i>
-                <h3>TITAN</h3>
-                <div class="price">499 ₽</div>
-                <button class="buy-btn" onclick="openPayment('TITAN', 499)">Купить сейчас</button>
-            </div>
-        </div>
+        <script>
+            // Твій скрипт TradeMC
+            // ЗАМІНИ "Shop":"1" на свій справжній номер магазину з TradeMC!
+            TrademcAPI.GetBuyForm({
+                "Shop":"1", 
+                "Title":"Выберите товар",
+                "Nickname":"Введите ваш никнейм",
+                "Item":"Выберите категорию",
+                "Coupon":"Введите купон (если есть)",
+                "Button":"Продолжить к оплате",
+                "Success_URL":"https://mirworld.fun",
+                "Pending_URL":"https://mirworld.fun",
+                "Fail_URL":"https://mirworld.fun",
+                "PastPlaceID":"trademc-buyform"
+            });
+        </script>
     </div>
 
-    <!-- МОДАЛКА -->
-    <div class="modal-overlay" id="modal">
-        <div class="modal-content">
-            <h2 style="text-transform: uppercase; font-weight: 900;">Подтверждение</h2>
-            <p style="margin-top: 10px; opacity: 0.7;">Вы покупаете донат на ник:</p>
-            <span class="modal-nick" id="modalNick">---</span>
-            
-            <button class="pay-confirm-btn" onclick="redirectToAnyPay()">
-                <i class="fas fa-shopping-cart"></i> Оплатить через AnyPay
-            </button>
-            
-            <button onclick="closeModal()" style="margin-top: 20px; background: none; border: none; color: #555; cursor: pointer; font-weight: 700;">Отмена</button>
-        </div>
-    </div>
-
-    <!-- СКРИПТИ -->
-    <script>
-        let selectedItem = "";
-        let selectedPrice = 0;
-
-        // Открытие модального окна
-        function openPayment(name, price) {
-            const nick = document.getElementById('playerNickname').value;
-            
-            if (!nick || nick.length < 3) {
-                alert('❌ Сначала введите свой никнейм в поле выше!');
-                return;
-            }
-
-            selectedItem = name;
-            selectedPrice = price;
-            document.getElementById('modalNick').innerText = nick;
-            document.getElementById('modal').classList.add('active');
-        }
-
-        // Закрытие модального окна
-        function closeModal() {
-            document.getElementById('modal').classList.remove('active');
-        }
-
-        // Логика AnyPay
-        function redirectToAnyPay() {
-            const nick = document.getElementById('playerNickname').value;
-            
-            // ВАЖНО: Вставь свой Project ID ниже
-            const projectID = "17669"; 
-            
-            const payID = Date.now(); // Уникальный ID платежа
-            const desc = encodeURIComponent(`Покупка ${selectedItem} для ${nick}`);
-            
-            const url = `https://anypay.io{projectID}&amount=${selectedPrice}&pay_id=${payID}&currency=rub&desc=${desc}`;
-            
-            window.location.href = url;
-        }
-
-        // Закрытие по клику вне окна
-        window.onclick = function(e) {
-            if (e.target == document.getElementById('modal')) closeModal();
-        }
-    </script>
+    <p style="text-align: center; opacity: 0.4; font-size: 0.8rem;">
+        Оплачивая товар, вы подтверждаете согласие с правилами сервера.
+    </p>
 
 </body>
 </html>
