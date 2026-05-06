@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Магазин — MirWorld</title>
+    <link href="https://googleapis.com" rel="stylesheet">
+    <link rel="stylesheet" href="https://cloudflare.com">
+    <style>
+        :root {
+            --primary: #ff9d00;
+            --bg: #0d0d0d;
+            --card: #161616;
+            --border: rgba(255, 255, 255, 0.08);
+            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body { font-family: 'Montserrat', sans-serif; background-color: var(--bg); color: white; overflow-x: hidden; }
+
+        /* --- HEADER --- */
+        header {
+            position: fixed;
+            top: 0; width: 100%; z-index: 1000;
+            background: rgba(0, 0, 0, 0.85); backdrop-filter: blur(12px);
+            border-bottom: 2px solid var(--primary);
+        }
+        nav { max-width: 1200px; margin: 0 auto; padding: 15px 20px; display: flex; justify-content: space-between; align-items: center; }
+        .logo { font-weight: 900; font-size: 1.5rem; color: var(--primary); text-transform: uppercase; }
+        .nav-links { display: flex; gap: 25px; list-style: none; }
+        .nav-links a { text-decoration: none; color: rgba(255,255,255,0.7); font-weight: 700; text-transform: uppercase; font-size: 0.85rem; }
+
+        /* --- SHOP CONTENT --- */
+        .shop-wrapper { max-width: 1100px; margin: 120px auto 60px; padding: 0 20px; }
+        .nick-box { text-align: center; margin-bottom: 50px; }
+        .nick-input {
+            width: 100%; max-width: 400px; padding: 18px;
+            background: var(--card); border: 2px solid var(--border);
+            border-radius: 12px; color: white; font-size: 1.1rem; text-align: center; outline: none; transition: var(--transition);
+        }
+        .nick-input:focus { border-color: var(--primary); box-shadow: 0 0 20px rgba(255, 157, 0, 0.2); }
+
+        .products-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 25px; }
+        .product-card {
+            background: var(--card); border-radius: 20px; padding: 40px 20px; text-align: center;
+            border: 1px solid var(--border); transition: var(--transition);
+        }
+        .product-card:hover { transform: translateY(-10px); border-color: var(--primary); }
+        .item-icon { font-size: 3.5rem; color: var(--primary); margin-bottom: 20px; }
+        .buy-btn {
+            display: inline-block; width: 100%; padding: 14px; background: var(--primary);
+            color: black; font-weight: 900; text-transform: uppercase; border-radius: 10px; cursor: pointer; border: none;
+        }
+
+        /* --- MODAL WINDOW --- */
+        .modal-overlay {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0, 0, 0, 0.85); backdrop-filter: blur(8px);
+            display: flex; align-items: center; justify-content: center;
+            z-index: 2000; opacity: 0; visibility: hidden; transition: 0.3s;
+        }
+        .modal-overlay.active { opacity: 1; visibility: visible; }
+
+        .modal-content {
+            background: #1c1c1c; padding: 40px; border-radius: 24px;
+            max-width: 450px; width: 90%; text-align: center;
+            border: 2px solid var(--primary); transform: scale(0.8); transition: 0.3s;
+        }
+        .modal-overlay.active .modal-content { transform: scale(1); }
+
+        .modal-title { font-size: 1.8rem; font-weight: 900; margin-bottom: 10px; }
+        .confirm-nick { color: var(--primary); font-weight: 700; margin-bottom: 25px; display: block; }
+
+        .pay-methods { display: flex; flex-direction: column; gap: 10px; }
+        .pay-btn {
+            background: #252525; color: white; padding: 15px; border-radius: 12px;
+            text-decoration: none; font-weight: 700; display: flex; align-items: center; justify-content: center; gap: 10px;
+            border: 1px solid var(--border); transition: 0.2s;
+        }
+        .pay-btn:hover { background: var(--primary); color: black; border-color: var(--primary); }
+
+        .close-modal { margin-top: 20px; background: none; border: none; color: #666; cursor: pointer; font-weight: 700; }
+    </style>
+</head>
+<body>
+
+    <header>
+        <nav>
+            <div class="logo">MirWorld</div>
+            <ul class="nav-links">
+                <li><a href="#">Главная</a></li>
+                <li><a href="#" class="active">Магазин</a></li>
+                <li><a href="#">Правила</a></li>
+                <li><a href="#">Поддержка</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <div class="shop-wrapper">
+        <div class="nick-box">
+            <h2 style="margin-bottom: 20px;">Введите ваш ник</h2>
+            <input type="text" id="mainNick" class="nick-input" placeholder="Например: Player123">
+        </div>
+
+        <div class="products-grid">
+            <div class="product-card">
+                <div class="item-icon"><i class="fas fa-crown"></i></div>
+                <h2>VIP</h2>
+                <p style="margin: 10px 0 20px; opacity: 0.7;">Базовый набор команд</p>
+                <div style="font-size: 1.5rem; font-weight: 900; margin-bottom: 20px;">99 ₽</div>
+                <button class="buy-btn" onclick="openModal('VIP', 99)">Купить</button>
+            </div>
+
+            <div class="product-card">
+                <div class="item-icon"><i class="fas fa-gem"></i></div>
+                <h2>PREMIUM</h2>
+                <p style="margin: 10px 0 20px; opacity: 0.7;">Полный доступ к полёту</p>
+                <div style="font-size: 1.5rem; font-weight: 900; margin-bottom: 20px;">249 ₽</div>
+                <button class="buy-btn" onclick="openModal('PREMIUM', 249)">Купить</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- MODAL -->
+    <div class="modal-overlay" id="modal">
+        <div class="modal-content">
+            <h2 class="modal-title">Подтверждение</h2>
+            <span class="confirm-nick" id="modalNickDisplay">Ник: —</span>
+            
+            <div class="pay-methods">
+                <button onclick="goToAnyPay()" class="pay-btn">
+                    <i class="fas fa-credit-card"></i> Перейти к оплате AnyPay
+                </button>
+            </div>
+
+            <button class="close-modal" onclick="closeModal()">Отмена</button>
+        </div>
+    </div>
+
+    <script>
+        let currentItem = "";
+        let currentPrice = 0;
+
+        function openModal(name, price) {
+            const nick = document.getElementById('mainNick').value;
+            if (!nick || nick.length < 3) {
+                alert('❌ Сначала введите ник!');
+                return;
+            }
+            
+            currentItem = name;
+            currentPrice = price;
+            document.getElementById('modalNickDisplay').innerText = "Ник: " + nick;
+            document.getElementById('modal').classList.add('active');
+        }
+
+        function closeModal() {
+            document.getElementById('modal').classList.remove('active');
+        }
+
+        function goToAnyPay() {
+            const nick = document.getElementById('mainNick').value;
+            const projectID = "ВАШ_ID"; // ЗАМЕНИТЕ НА ВАШ ID ИЗ ANYPAY
+            const desc = encodeURIComponent(`Донат ${currentItem} для ${nick}`);
+            
+            const url = `https://anypay.io{projectID}&amount=${currentPrice}&pay_id=${Date.now()}&currency=RUB&desc=${desc}`;
+            window.location.href = url;
+        }
+
+        // Закрытие при клике на фон
+        window.onclick = function(event) {
+            const modal = document.getElementById('modal');
+            if (event.target == modal) closeModal();
+        }
+    </script>
+
+</body>
+</html>
