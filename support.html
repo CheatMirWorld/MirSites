@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MirWorld — Техническая Поддержка</title>
+    <meta name="description" content="Возникли проблемы с донатом или игрой на MirWorld? Свяжитесь с нашей техподдержкой через Discord, Telegram или почту!">
+    
+    <!-- Голотип / Фавиконка -->
+    <link rel="icon" type="image/png" href="Mir.png">
+    
+    <link rel="stylesheet" href="style.css">
+    <link href="https://googleapis.com" rel="stylesheet">
+</head>
+<body class="support-body">
+
+    <!-- ВЕРХНЕЕ МЕНЮ (НАВИГАЦИЯ) -->
+    <nav class="navbar">
+        <div class="logo" onclick="window.location.href='https://mirworld.fun'">Mir<span>World</span></div>
+        <ul class="nav-links">
+            <li><a href="https://mirworld.fun">Главная</a></li>
+            <li><a href="/shop" class="shop-btn">Магазин</a></li>
+            <li><a href="/rules">Правила</a></li>
+            <li><a href="/support" class="active">Поддержка</a></li>
+        </ul>
+    </nav>
+
+    <!-- КОНТЕНТ СТРАНИЦЫ ПОДДЕРЖКИ -->
+    <main class="support-container">
+        <div class="support-header anim-fade-in">
+            <span class="support-tag">Помощь игрокам 24/7</span>
+            <h1>Техническая поддержка <span class="server-name">MirWorld</span></h1>
+            <p class="support-subtitle">Возникли вопросы по поводу доната, нашли баг или хотите подать жалобу? Выберите любой удобный способ связи ниже. Наши кураторы ответят вам в кратчайшие сроки!</p>
+        </div>
+
+        <!-- СЕТКА С ВАРИАНТАМИ СВЯЗИ -->
+        <div class="support-grid anim-slide-up">
+            
+            <!-- Дискорд -->
+            <div class="support-card discord-card">
+                <div class="sup-icon">💬</div>
+                <h3>Наш Discord</h3>
+                <p>Создайте тикет в специальном канале для быстрого решения вопросов внутри сообщества.</p>
+                <a href="https://ds.mirworld.fun" target="_blank" class="sup-link-btn ds-btn">Открыть Discord</a>
+            </div>
+
+            <!-- Телеграм -->
+            <div class="support-card telegram-card">
+                <div class="sup-icon">✈️</div>
+                <h3>Наш Telegram</h3>
+                <p>Прямая связь с тех.поддержкой в мессенджере. Идеально подходит для вопросов по платежам.</p>
+                <a href="https://t.me/@mirworld_tex" target="_blank" class="sup-link-btn tg-btn">Открыть Telegram</a>
+            </div>
+
+            <!-- Почта -->
+            <div class="support-card mail-card">
+                <div class="sup-icon">✉️</div>
+                <h3>Email Почта</h3>
+                <p>Официальный адрес для деловых предложений, разбанов и крупных коммерческих вопросов.</p>
+                <div class="mail-copy-box" onclick="copyMail()">
+                    <span id="mail-text">wizercurator@gmail.com</span>
+                    <button class="mail-copy-btn">Копировать</button>
+                </div>
+                <div id="mail-alert" class="mail-alert">Почта скопирована!</div>
+            </div>
+
+        </div>
+    </main>
+
+    <!-- ФУТЕР -->
+    <footer>
+        <p>&copy; 2026 MirWorld. Все права защищены. Проект не связан с Mojang, AB.</p>
+    </footer>
+
+    <!-- Скрипт копирования почты -->
+    <script>
+        function copyMail() {
+            const mailText = document.getElementById('mail-text').innerText;
+            navigator.clipboard.writeText(mailText).then(() => {
+                const alertBox = document.getElementById('mail-alert');
+                alertBox.classList.add('show');
+                setTimeout(() => alertBox.classList.remove('show'), 2000);
+            });
+        }
+    </script>
+</body>
+</html>
