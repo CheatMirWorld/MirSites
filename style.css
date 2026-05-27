@@ -384,3 +384,178 @@ footer {
     body { padding-top: 120px; }
     .hero-section { height: auto; padding: 60px 20px; }
 }
+/* --- СТИЛИ ДЛЯ СТРАНИЦЫ ПОДДЕРЖКИ --- */
+.support-body {
+    background: radial-gradient(circle at top, #0d0a12 0%, #060709 50%);
+}
+
+.support-container {
+    max-width: 1100px;
+    margin: 40px auto 100px auto;
+    padding: 0 20px;
+}
+
+.support-header {
+    text-align: center;
+    margin-bottom: 60px;
+}
+
+.support-tag {
+    background: rgba(142, 68, 173, 0.1);
+    border: 1px solid rgba(142, 68, 173, 0.3);
+    color: #9b59b6;
+    padding: 6px 16px;
+    border-radius: 20px;
+    font-size: 11px;
+    font-weight: 900;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    display: inline-block;
+    margin-bottom: 15px;
+}
+
+.support-subtitle {
+    font-size: 15px;
+    color: #828993;
+    max-width: 700px;
+    margin: 15px auto 0 auto;
+    line-height: 1.6;
+}
+
+/* СЕТКА КАРТОЧЕК */
+.support-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+}
+
+.support-card {
+    background: #0b0d11;
+    border: 1px solid rgba(255, 255, 255, 0.02);
+    padding: 40px 30px;
+    border-radius: 16px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    min-height: 350px;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.support-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4);
+}
+
+/* Кастомный неоновый гриф-эффект для каждой кнопки при наведении */
+.discord-card:hover { border-color: #5865F2; box-shadow: 0 0 25px rgba(88, 101, 242, 0.15); }
+.telegram-card:hover { border-color: #0088cc; box-shadow: 0 0 25px rgba(0, 136, 204, 0.15); }
+.mail-card:hover { border-color: #e62e2e; box-shadow: 0 0 25px rgba(230, 46, 46, 0.15); }
+
+.sup-icon {
+    font-size: 45px;
+    margin-bottom: 15px;
+}
+
+.support-card h3 {
+    font-size: 22px;
+    color: #ffffff;
+    margin-bottom: 12px;
+}
+
+.support-card p {
+    font-size: 14px;
+    line-height: 1.6;
+    color: #7f8c8d;
+    margin-bottom: 25px;
+}
+
+/* КНОПКИ СВЯЗИ */
+.sup-link-btn {
+    width: 100%;
+    padding: 14px;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: 700;
+    font-size: 15px;
+    color: #ffffff;
+    transition: background 0.3s, transform 0.2s;
+}
+
+.sup-link-btn:active {
+    transform: scale(0.98);
+}
+
+.ds-btn { background-color: #5865F2; }
+.ds-btn:hover { background-color: #4752C4; }
+
+.tg-btn { background-color: #0088cc; }
+.tg-btn:hover { background-color: #0077b3; }
+
+/* БЛОК ПОЧТЫ С КОПИРОВАНИЕМ */
+.mail-copy-box {
+    background: #11141a;
+    border: 1px solid #1f2430;
+    width: 100%;
+    padding: 6px 6px 6px 15px;
+    border-radius: 8px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    cursor: pointer;
+    transition: border-color 0.3s;
+}
+
+.mail-copy-box:hover {
+    border-color: #e62e2e;
+}
+
+#mail-text {
+    font-size: 13px;
+    font-weight: 700;
+    color: #ffffff;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.mail-copy-btn {
+    background: #e62e2e;
+    border: none;
+    color: #ffffff;
+    padding: 10px 15px;
+    border-radius: 6px;
+    font-weight: 700;
+    font-size: 12px;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+.mail-copy-box:hover .mail-copy-btn {
+    background: #b82020;
+}
+
+.mail-alert {
+    color: #e62e2e;
+    font-size: 12px;
+    font-weight: 700;
+    margin-top: 10px;
+    opacity: 0;
+    transform: translateY(5px);
+    transition: all 0.3s ease;
+}
+
+.mail-alert.show {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Адаптивность для мобильных */
+@media (max-width: 480px) {
+    .support-card {
+        padding: 30px 20px;
+        min-height: auto;
+    }
+}
+
