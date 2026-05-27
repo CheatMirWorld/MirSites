@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- Заголовок и описание (SEO) -->
+    <title>MirWorld — Топовый Гриферский Сервер Minecraft</title>
+    <meta name="description" content="Заходи на MirWorld (mc.MirWorld.fun)! Лучший гриферский сервер в стиле ReallyWorld на версиях 1.16.5-1.20.1. Жесткое PvP, кланы, мистики и рейды!">
+    
+    <!-- Голотип (Фавиконка для вкладки браузера) -->
+    <link rel="icon" type="image/png" href="https://imgur.com">
+    
+    <!-- Мета-теги для красивого отображения в Discord, Telegram, VK (Open Graph) -->
+    <meta property="og:title" content="MirWorld — Гриферский Сервер Minecraft">
+    <meta property="og:description" content="mc.MirWorld.fun | Версии 1.16.5 - 1.20.1. Взрывай приваты, участвуй в PvP замесах и захватывай мистики!">
+    <meta property="og:image" content="https://imgur.com"> <!-- Ссылка на картинку-логотип для превью -->
+    <meta property="og:type" content="website">
+
+    <link rel="stylesheet" href="style.css">
+    <link href="https://googleapis.com" rel="stylesheet">
+</head>
+<body>
+
+    <!-- ВЕРХНЕЕ МЕНЮ (НАВИГАЦИЯ) -->
+    <nav class="navbar">
+        <div class="logo">Mir<span>World</span></div>
+        <ul class="nav-links">
+            <li><a href="#home" class="active">Главная</a></li>
+            <li><a href="#donate" class="shop-btn">Магазин</a></li>
+            <li><a href="#rules">Правила</a></li>
+            <li><a href="#support">Поддержка</a></li>
+        </ul>
+    </nav>
+
+    <!-- ГЛАВНЫЙ БАННЕР -->
+    <header id="home" class="hero-section">
+        <div class="hero-content">
+            <div class="server-tag anim-fade-in">Гриферский сервер в стиле ReallyWorld</div>
+            <h1 class="anim-slide-up">Сервер <span class="server-name">MirWorld</span></h1>
+            <p class="hero-subtitle anim-slide-up">Жестокий гриф, подрывы баз, ловушки и масштабные клановые войны!</p>
+            
+            <!-- Кнопка копирования IP -->
+            <div class="ip-container anim-bounce" onclick="copyIP()">
+                <span id="ip-text">mc.MirWorld.fun</span>
+                <button class="copy-btn">Копировать IP</button>
+            </div>
+            <div id="copy-alert" class="copy-alert">IP скопирован! Заходи и гриферь!</div>
+        </div>
+    </header>
+
+    <!-- СТАТИСТИКА И ОСОБЕННОСТИ -->
+    <section id="about" class="info-section">
+        <div class="stats-grid">
+            <div class="stat-card version">
+                <div class="card-icon">🏷️</div>
+                <h3>Версия</h3>
+                <p>1.16.5 - 1.20.1</p>
+            </div>
+            <div class="stat-card online">
+                <div class="card-icon pulse-green">🟢</div>
+                <h3>Онлайн</h3>
+                <p id="player-count">Загрузка...</p>
+            </div>
+            <div class="stat-card mode">
+                <div class="card-icon">⚔️</div>
+                <h3>Режим</h3>
+                <p>Только Гриф</p>
+            </div>
+        </div>
+
+        <!-- Преимущества грифа -->
+        <div class="features-section">
+            <h2>Правила нашего Гриферского мира</h2>
+            <div class="features-grid">
+                <div class="feature-item">
+                    <div class="feat-emoji">💥</div>
+                    <h3>Подрывы и Рейды</h3>
+                    <p>Разрешено всё: взрывай приваты ТНТ-пушками, заливай лавой, ломай чужие хранилища и забирай весь лут себе.</p>
+                </div>
+                <div class="feature-item">
+                    <div class="feat-emoji">🛡️</div>
+                    <h3>PvP & Кастомные вещи</h3>
+                    <p>Фирменные талисманы, сферы, уникальные зелья и броня для жестких замесов. Честная система анти-релога (CombatLog).</p>
+                </div>
+                <div class="feature-item">
+                    <div class="feat-emoji">👑</div>
+                    <h3>Мистические Сундуки</h3>
+                    <p>Регулярные ивенты с бесплатным топовым лутом. Собирай свой гриф-клан и зачищай локацию вокруг мистика!</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ФУТЕР -->
+    <footer>
+        <p>&copy; 2026 MirWorld. Все права защищены. Проект не связан с Mojang Studios.</p>
+    </footer>
+
+    <!-- СКРИПТЫ -->
+    <script>
+        // Копирование IP с эффектом
+        function copyIP() {
+            const ipText = document.getElementById('ip-text').innerText;
+            navigator.clipboard.writeText(ipText).then(() => {
+                const alertBox = document.getElementById('copy-alert');
+                alertBox.classList.add('show');
+                setTimeout(() => alertBox.classList.remove('show'), 2500);
+            });
+        }
+
+        // Автоматический онлайн сервера
+        async function updateOnline() {
+            try {
+                const response = await fetch('https://mcsrvstat.us');
+                const data = await response.json();
+                const countElement = document.getElementById('player-count');
+                
+                if (data.online) {
+                    countElement.innerHTML = `${data.players.online} <span class="players-max">/ ${data.players.max}</span>`;
+                } else {
+                    countElement.innerText = "Офлайн";
+                    countElement.style.color = "#ff4d4d";
+                }
+            } catch (error) {
+                document.getElementById('player-count').innerText = "В сети";
+            }
+        }
+
+        updateOnline();
+        setInterval(updateOnline, 30000);
+    </script>
+</body>
+</html>
