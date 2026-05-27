@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MirWorld — Правила проекта</title>
+    <meta name="description" content="Официальный свод правил гриферского сервера MirWorld. Ознакомьтесь перед началом игры, чтобы избежать блокировок!">
+    
+    <!-- Голотип / Фавиконка -->
+    <link rel="icon" type="image/png" href="https://imgur.com">
+    
+    <link rel="stylesheet" href="style.css">
+    <link href="https://googleapis.com" rel="stylesheet">
+</head>
+<body class="rules-body">
+
+    <!-- ВЕРХНЕЕ МЕНЮ (НАВИГАЦИЯ) -->
+    <nav class="navbar">
+        <div class="logo" onclick="window.location.href='index.html'">Mir<span>World</span></div>
+        <ul class="nav-links">
+            <li><a href="index.html">Главная</a></li>
+            <li><a href="shop.html" class="shop-btn">Магазин</a></li>
+            <li><a href="rules.html" class="active">Правила</a></li>
+            <li><a href="index.html#support">Поддержка</a></li>
+        </ul>
+    </nav>
+
+    <!-- КОНТЕНТ СТРАНИЦЫ ПРАВИЛ -->
+    <main class="rules-container">
+        <div class="rules-header anim-fade-in">
+            <span class="rules-tag">Важно к прочтению</span>
+            <h1>Правила проекта <span class="server-name">MirWorld</span></h1>
+            <p class="rules-subtitle">Незнание правил не освобождает вас от ответственности. Начиная игру на сервере, вы автоматически соглашаетесь с данным сводом правил.</p>
+        </div>
+
+        <!-- АККОРДЕОН С ПРАВИЛАМИ (КАК НА REALLYWORLD) -->
+        <div class="rules-accordion anim-slide-up">
+            
+            <!-- Раздел 1 -->
+            <div class="accordion-item">
+                <div class="accordion-header" onclick="toggleAccordion(this)">
+                    <span>1. Общие положения проекта</span>
+                    <span class="arrow">▼</span>
+                </div>
+                <div class="accordion-content">
+                    <p><strong>1.1.</strong> Администрация имеет право выдать наказание на свое усмотрение, если действия игрока несут вред проекту.</p>
+                    <p><strong>1.2.</strong> Администрация не возвращает ресурсы, утерянные в результате багов, откатов, смертей или гриферства.</p>
+                    <p><strong>1.3.</strong> Ответственность за безопасность аккаунта несет исключительно сам игрок.</p>
+                    <p><strong>1.4.</strong> Продажа/покупка игровых ценностей, доната или аккаунтов за реальные деньги запрещена (РМТ).</p>
+                </div>
+            </div>
+
+            <!-- Раздел 2 -->
+            <div class="accordion-item">
+                <div class="accordion-header" onclick="toggleAccordion(this)">
+                    <span>2. Правила игрового чата</span>
+                    <span class="arrow">▼</span>
+                </div>
+                <div class="accordion-content">
+                    <p><strong>2.1.</strong> Запрещено оскорбление игроков, администрации, а также разжигание межнациональной розни.</p>
+                    <p><strong>2.2.</strong> Запрещен спам, флуд, капс, организация массового флуда в глобальном или локальном чатах.</p>
+                    <p><strong>2.3.</strong> Реклама сторонних ресурсов (серверов, сайтов, каналов без сотрудничества) строго запрещена.</p>
+                    <p><strong>2.4.</strong> Запрещено упоминание сторонних чит-программ, призывы к их использованию или их реклама.</p>
+                </div>
+            </div>
+
+            <!-- Раздел 3 -->
+            <div class="accordion-item">
+                <div class="accordion-header" onclick="toggleAccordion(this)">
+                    <span>3. Игровой процесс (Гриф и PvP)</span>
+                    <span class="arrow">▼</span>
+                </div>
+                <div class="accordion-content">
+                    <p><strong>3.1.</strong> Использование любых сторонних модификаций, дающих преимущество (читы, макросы, авто-тотемы, X-Ray) строго запрещено.</p>
+                    <p><strong>3.5.</strong> Гриферство, обман при обмене ресурсами, ловушки и залитие баз лавой — РАЗРЕШЕНЫ (у нас Гриферский сервер).</p>
+                    <p><strong>3.3.</strong> Запрещено использование багов игры, дюпы ресурсов, а также создание построек, лагающих сервер.</p>
+                    <p><strong>3.4.</strong> Выход из игры во время проверки на читы администрацией (через AnyDesk/Discord) приравнивается к признанию использования читов и карается баном.</p>
+                </div>
+            </div>
+
+            <!-- Раздел 4 -->
+            <div class="accordion-item">
+                <div class="accordion-header" onclick="toggleAccordion(this)">
+                    <span>4. Использование донат-привилегий</span>
+                    <span class="arrow">▼</span>
+                </div>
+                <div class="accordion-content">
+                    <p><strong>4.1.</strong> Запрещена выдача необоснованных наказаний (бан, кик, мут) с помощью донат-команд.</p>
+                    <p><strong>4.2.</strong> Запрещено указывать оскорбительные или некорректные причины в командах наказаний.</p>
+                    <p><strong>4.3.</strong> Запрещен ввод в заблуждение игроков от лица администрации, используя кастомные префиксы.</p>
+                </div>
+            </div>
+
+        </div>
+    </main>
+
+    <!-- ФУТЕР -->
+    <footer>
+        <p>&copy; 2026 MirWorld. Все права защищены. Проект не связан с Mojang, AB.</p>
+    </footer>
+
+    <!-- СКРИПТ ДЛЯ ПЛАВНОЙ АНИМАЦИИ АККОРДЕОНА -->
+    <script>
+        function toggleAccordion(header) {
+            const item = header.parentElement;
+            const content = item.querySelector('.accordion-content');
+            const arrow = header.querySelector('.arrow');
+            
+            // Закрываем другие открытые разделы
+            document.querySelectorAll('.accordion-item').forEach(el => {
+                if (el !== item && el.classList.contains('open')) {
+                    el.classList.remove('open');
+                    el.querySelector('.accordion-content').style.maxHeight = null;
+                    el.querySelector('.arrow').style.transform = 'rotate(0deg)';
+                }
+            });
+
+            // Открываем / Закрываем текущий
+            if (item.classList.contains('open')) {
+                item.classList.remove('open');
+                content.style.maxHeight = null;
+                arrow.style.transform = 'rotate(0deg)';
+            } else {
+                item.classList.add('open');
+                content.style.maxHeight = content.scrollHeight + "px";
+                arrow.style.transform = 'rotate(180deg)';
+            }
+        }
+    </script>
+</body>
+</html>
