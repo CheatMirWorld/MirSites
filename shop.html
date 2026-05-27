@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MirWorld — Официальный Магазин Доната</title>
+    <meta name="description" content="Покупка доната на гриферском сервере MirWorld через официальный магазин Trademc. Автоматическая выдача привилегий!">
+    
+    <!-- Голотип / Фавиконка -->
+    <link rel="icon" type="image/png" href="https://imgur.com">
+    
+    <link rel="stylesheet" href="style.css">
+    <link href="https://googleapis.com" rel="stylesheet">
+</head>
+<body class="shop-body">
+
+    <!-- ВЕРХНЕЕ МЕНЮ (НАВИГАЦИЯ) -->
+    <nav class="navbar">
+        <div class="logo" onclick="window.location.href='https://mirworld.fun'">Mir<span>World</span></div>
+        <ul class="nav-links">
+            <li><a href="https://mirworld.fun">Главная</a></li>
+            <li><a href="/shop" class="shop-btn active">Магазин</a></li>
+            <li><a href="/rules">Правила</a></li>
+            <li><a href="/support">Поддержка</a></li>
+        </ul>
+    </nav>
+
+    <!-- КОНТЕНТ МАГАЗИНА -->
+    <main class="shop-container">
+        <div class="shop-header anim-fade-in">
+            <span class="shop-tag">Автоматическая выдача</span>
+            <h1>Официальный магазин <span class="server-name">MirWorld</span></h1>
+            <p class="shop-subtitle">Покупая донат, вы поддерживаете развитие сервера. Перед покупкой обязательно освободите место в инвентаре и будьте на сервере!</p>
+        </div>
+
+        <!-- КОРПУС ДЛЯ ВИДЖЕТА TRADEMC -->
+        <script src="https://api.trademc.org/trademcapi.js"></script>
+<div id="trademc-buyform"></div>
+<script>TrademcAPI.GetBuyForm({"Shop":"1","Title":"Купить донат","Nickname":"Введите ваш никнейм","Item":"Выберите товар","Coupon":"Введите купон, если есть","Button":"Продолжить","Success_URL":"https://trademc.org","Pending_URL":"https://trademc.org","Fail_URL":"https://trademc.org","PastPlaceID":"trademc-buyform"});</script>
+
+        <!-- ГАРАНТИИ И ИНФОРМАЦИЯ -->
+        <div class="shop-guarantees anim-slide-up">
+            <div class="guarantee-item">
+                <span class="g-icon">⚡</span>
+                <h3>Быстрая выдача</h3>
+                <p>Привилегии и рубли поступают на ваш аккаунт в течение 1–5 минут после успешной оплаты.</p>
+            </div>
+            <div class="guarantee-item">
+                <span class="g-icon">🔒</span>
+                <h3>Безопасность</h3>
+                <p>Все платежи проходят через защищенные шлюзы Trademc. Ваши данные в полной безопасности.</p>
+            </div>
+            <div class="guarantee-item">
+                <span class="g-icon">🤝</span>
+                <h3>Поддержка 24/7</h3>
+                <p>Если донат не пришел, обратитесь в нашу поддержку, предоставив чек оплаты.</p>
+            </div>
+        </div>
+    </main>
+
+    <!-- ФУТЕР -->
+    <footer>
+        <p>&copy; 2026 MirWorld. Все права защищены. Оплата просходит через Trademc.org.</p>
+    </footer>
+
+</body>
+</html>
